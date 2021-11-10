@@ -7,9 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D6385E5B2731EF68006C7E15 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6385E5A2731EF68006C7E15 /* EventsViewController.swift */; };
+		D64682A02731B72B000917DA /* SignUpMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646829F2731B72B000917DA /* SignUpMethodViewController.swift */; };
+		D64682A22731B73E000917DA /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64682A12731B73E000917DA /* SignUpViewController.swift */; };
+		D65C77492739294100A5057F /* CEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65C77482739294100A5057F /* CEventsViewController.swift */; };
+		D65C774B273935AA00A5057F /* DetailEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65C774A273935AA00A5057F /* DetailEventViewController.swift */; };
+		D65C774D2739415C00A5057F /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65C774C2739415C00A5057F /* FavoriteViewController.swift */; };
+		D65C774F2739416E00A5057F /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65C774E2739416E00A5057F /* ShareViewController.swift */; };
+		D65C77512739425A00A5057F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65C77502739425A00A5057F /* ProfileViewController.swift */; };
+		D66AECE8273AED6E00CE713C /* UpdateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66AECE7273AED6E00CE713C /* UpdateEventViewController.swift */; };
+		D66AECEA273B13E600CE713C /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66AECE9273B13E600CE713C /* UserViewModel.swift */; };
+		D66AECEC273B13F900CE713C /* APIUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66AECEB273B13F900CE713C /* APIUser.swift */; };
+		D66AECEE273B144C00CE713C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66AECED273B144C00CE713C /* User.swift */; };
+		D6AFFBC627346ADB0010829C /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AFFBC527346ADB0010829C /* Event.swift */; };
+		D6AFFBC82734727C0010829C /* APIEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AFFBC72734727C0010829C /* APIEvent.swift */; };
+		D6AFFBCA273486CD0010829C /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AFFBC9273486CD0010829C /* EventViewModel.swift */; };
+		D6F2728727380DC200F9FE36 /* TabBarOrgController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F2728627380DC200F9FE36 /* TabBarOrgController.swift */; };
+		D6F883D62736D84E0038223D /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F883D52736D84E0038223D /* CreateViewController.swift */; };
 		D6FA4E56272DE65700E122E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FA4E55272DE65700E122E0 /* AppDelegate.swift */; };
 		D6FA4E58272DE65700E122E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FA4E57272DE65700E122E0 /* SceneDelegate.swift */; };
-		D6FA4E5A272DE65700E122E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FA4E59272DE65700E122E0 /* ViewController.swift */; };
+		D6FA4E5A272DE65700E122E0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FA4E59272DE65700E122E0 /* LoginViewController.swift */; };
 		D6FA4E5D272DE65700E122E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6FA4E5B272DE65700E122E0 /* Main.storyboard */; };
 		D6FA4E60272DE65700E122E0 /* camperTN.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D6FA4E5E272DE65700E122E0 /* camperTN.xcdatamodeld */; };
 		D6FA4E62272DE65800E122E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6FA4E61272DE65800E122E0 /* Assets.xcassets */; };
@@ -17,10 +34,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D6385E5A2731EF68006C7E15 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		D646829F2731B72B000917DA /* SignUpMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpMethodViewController.swift; sourceTree = "<group>"; };
+		D64682A12731B73E000917DA /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		D65C77482739294100A5057F /* CEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CEventsViewController.swift; sourceTree = "<group>"; };
+		D65C774A273935AA00A5057F /* DetailEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEventViewController.swift; sourceTree = "<group>"; };
+		D65C774C2739415C00A5057F /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		D65C774E2739416E00A5057F /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		D65C77502739425A00A5057F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D66AECE7273AED6E00CE713C /* UpdateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEventViewController.swift; sourceTree = "<group>"; };
+		D66AECE9273B13E600CE713C /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		D66AECEB273B13F900CE713C /* APIUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUser.swift; sourceTree = "<group>"; };
+		D66AECED273B144C00CE713C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D6AFFBC527346ADB0010829C /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		D6AFFBC72734727C0010829C /* APIEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEvent.swift; sourceTree = "<group>"; };
+		D6AFFBC9273486CD0010829C /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
+		D6F2728627380DC200F9FE36 /* TabBarOrgController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarOrgController.swift; sourceTree = "<group>"; };
+		D6F883D52736D84E0038223D /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 		D6FA4E52272DE65700E122E0 /* camperTN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = camperTN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6FA4E55272DE65700E122E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D6FA4E57272DE65700E122E0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D6FA4E59272DE65700E122E0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D6FA4E59272DE65700E122E0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D6FA4E5C272DE65700E122E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D6FA4E5F272DE65700E122E0 /* camperTN.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = camperTN.xcdatamodel; sourceTree = "<group>"; };
 		D6FA4E61272DE65800E122E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -39,6 +73,85 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D646829E2731B67F000917DA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D6FA4E59272DE65700E122E0 /* LoginViewController.swift */,
+				D646829F2731B72B000917DA /* SignUpMethodViewController.swift */,
+				D64682A12731B73E000917DA /* SignUpViewController.swift */,
+				D65C77472739283A00A5057F /* Admin */,
+				D6F883D42736D7400038223D /* organisateur */,
+				D65C77462739282B00A5057F /* Campeur */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		D65C77462739282B00A5057F /* Campeur */ = {
+			isa = PBXGroup;
+			children = (
+				D65C77482739294100A5057F /* CEventsViewController.swift */,
+				D65C774A273935AA00A5057F /* DetailEventViewController.swift */,
+				D65C774C2739415C00A5057F /* FavoriteViewController.swift */,
+				D65C774E2739416E00A5057F /* ShareViewController.swift */,
+				D65C77502739425A00A5057F /* ProfileViewController.swift */,
+			);
+			name = Campeur;
+			sourceTree = "<group>";
+		};
+		D65C77472739283A00A5057F /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Admin;
+			sourceTree = "<group>";
+		};
+		D6AFFBC1273469440010829C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				D6AFFBC9273486CD0010829C /* EventViewModel.swift */,
+				D66AECE9273B13E600CE713C /* UserViewModel.swift */,
+			);
+			name = ViewModels;
+			sourceTree = "<group>";
+		};
+		D6AFFBC22734695F0010829C /* API Service */ = {
+			isa = PBXGroup;
+			children = (
+				D6AFFBC72734727C0010829C /* APIEvent.swift */,
+				D66AECEB273B13F900CE713C /* APIUser.swift */,
+			);
+			path = "API Service";
+			sourceTree = "<group>";
+		};
+		D6AFFBC3273469830010829C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D6AFFBC527346ADB0010829C /* Event.swift */,
+				D66AECED273B144C00CE713C /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D6AFFBC4273469980010829C /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				D6FA4E55272DE65700E122E0 /* AppDelegate.swift */,
+				D6FA4E57272DE65700E122E0 /* SceneDelegate.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		D6F883D42736D7400038223D /* organisateur */ = {
+			isa = PBXGroup;
+			children = (
+				D6385E5A2731EF68006C7E15 /* EventsViewController.swift */,
+				D6F883D52736D84E0038223D /* CreateViewController.swift */,
+				D6F2728627380DC200F9FE36 /* TabBarOrgController.swift */,
+				D66AECE7273AED6E00CE713C /* UpdateEventViewController.swift */,
+			);
+			name = organisateur;
+			sourceTree = "<group>";
+		};
 		D6FA4E49272DE65600E122E0 = {
 			isa = PBXGroup;
 			children = (
@@ -58,9 +171,11 @@
 		D6FA4E54272DE65700E122E0 /* camperTN */ = {
 			isa = PBXGroup;
 			children = (
-				D6FA4E55272DE65700E122E0 /* AppDelegate.swift */,
-				D6FA4E57272DE65700E122E0 /* SceneDelegate.swift */,
-				D6FA4E59272DE65700E122E0 /* ViewController.swift */,
+				D6AFFBC22734695F0010829C /* API Service */,
+				D6AFFBC3273469830010829C /* Models */,
+				D6AFFBC1273469440010829C /* ViewModels */,
+				D646829E2731B67F000917DA /* Controller */,
+				D6AFFBC4273469980010829C /* Common */,
 				D6FA4E5B272DE65700E122E0 /* Main.storyboard */,
 				D6FA4E61272DE65800E122E0 /* Assets.xcassets */,
 				D6FA4E63272DE65800E122E0 /* LaunchScreen.storyboard */,
@@ -141,10 +256,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6FA4E5A272DE65700E122E0 /* ViewController.swift in Sources */,
+				D6F883D62736D84E0038223D /* CreateViewController.swift in Sources */,
+				D65C77492739294100A5057F /* CEventsViewController.swift in Sources */,
+				D6AFFBC82734727C0010829C /* APIEvent.swift in Sources */,
+				D6385E5B2731EF68006C7E15 /* EventsViewController.swift in Sources */,
+				D65C774D2739415C00A5057F /* FavoriteViewController.swift in Sources */,
+				D64682A22731B73E000917DA /* SignUpViewController.swift in Sources */,
+				D65C774F2739416E00A5057F /* ShareViewController.swift in Sources */,
+				D65C77512739425A00A5057F /* ProfileViewController.swift in Sources */,
+				D6AFFBCA273486CD0010829C /* EventViewModel.swift in Sources */,
+				D66AECEC273B13F900CE713C /* APIUser.swift in Sources */,
+				D6FA4E5A272DE65700E122E0 /* LoginViewController.swift in Sources */,
 				D6FA4E56272DE65700E122E0 /* AppDelegate.swift in Sources */,
+				D66AECE8273AED6E00CE713C /* UpdateEventViewController.swift in Sources */,
 				D6FA4E58272DE65700E122E0 /* SceneDelegate.swift in Sources */,
+				D66AECEA273B13E600CE713C /* UserViewModel.swift in Sources */,
+				D6F2728727380DC200F9FE36 /* TabBarOrgController.swift in Sources */,
+				D65C774B273935AA00A5057F /* DetailEventViewController.swift in Sources */,
+				D64682A02731B72B000917DA /* SignUpMethodViewController.swift in Sources */,
+				D6AFFBC627346ADB0010829C /* Event.swift in Sources */,
 				D6FA4E60272DE65700E122E0 /* camperTN.xcdatamodeld in Sources */,
+				D66AECEE273B144C00CE713C /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,7 +353,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -276,7 +408,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
