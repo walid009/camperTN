@@ -49,6 +49,6 @@ struct User: Codable {
     let prenom: String
     let email: String
     let password: String
-    let telephone: Int
+    let telephone: String
     let role: String
 }

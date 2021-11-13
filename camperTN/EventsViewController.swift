@@ -55,21 +55,21 @@ class EventsViewController: UIViewController,UITableViewDataSource,UITableViewDe
         //widgets
         let label = contentView?.viewWithTag(1) as! UILabel
         let imageView = contentView?.viewWithTag(3) as! UIImageView
-        //let editBTN = contentView?.viewWithTag(4) as! UIButton
-        //let deleteBTN = contentView?.viewWithTag(5) as! UIButton
+       // let editBTN = contentView?.viewWithTag(4) as! UIButton
+       // let deleteBTN = contentView?.viewWithTag(5) as! UIButton
         //bind
         label.text = data[indexPath.row].titre
         imageView.image = UIImage(named: "tes")
-        /*deleteBTN.tag = indexPath.row
-        deleteBTN.addTarget(self, action:#selector(DeleteBtnPressed(sender:)), for: .touchUpInside)*/
+       /* deleteBTN.tag = indexPath.row
+        deleteBTN.addTarget(self, action: #selector(EventsViewController.DeleteBtnPressed(sender:)), for: .touchUpInside)*/
         
         //print("==>\(data[indexPath.row].titre)")
         return cell!
     }
     
-    /*@objc func DeleteBtnPressed(sender: UIButton) {
-        let id = data[sender.tag]._id
-        print(id!)
+    /*@objc func DeleteBtnPressed(sender: Int) {
+        
+        print(sender)
     }*/
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
