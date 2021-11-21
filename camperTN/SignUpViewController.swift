@@ -11,11 +11,13 @@ class SignUpViewController: UIViewController {
     let role:[String] = ["Campeur","Organisateur"]
     var selectedRole:String?
     var userViewModel: UserViewModel?
+    var exist:Bool?
     //
     @IBOutlet weak var prenomTxtF: UITextField!
     @IBOutlet weak var nomTxtF: UITextField!
     @IBOutlet weak var emailTxtF: UITextField!
     @IBOutlet weak var passwordTxtF: UITextField!
+    @IBOutlet weak var passwordconfirmationTxtF: UITextField!
     @IBOutlet weak var rolePicker: UIPickerView!
     @IBOutlet weak var phoneTxtF: UITextField!
     
@@ -30,12 +32,37 @@ class SignUpViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    func callToViewModelForCheckEmail(email: String, user: UserInfo){
+        userViewModel?.checkEmail(email: email )
+        self.userViewModel?.bindUserViewModelToController = {
+            DispatchQueue.main.async {
+                self.exist = self.userViewModel?.emailExist.exist
+                print(self.exist!)
+                if self.exist != nil {
+                    if self.exist! {
+                        //1
+                        let alert = UIAlertController(title: "ERROR", message: "Email Already Used", preferredStyle: .alert)
+                        //2
+                        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        //3
+                        alert.addAction(action)
+                        //4
+                        self.present(alert, animated: true, completion: nil)
+                    }else{
+                        self.userViewModel?.signUp(user: user)
+                        self.navigationController?.popToRootViewController(animated: false)
+                    }
+                }
+            }
+        }
+    }
     
     @IBAction func btnSingupPressed(_ sender: Any) {
         let prenom = prenomTxtF.text
         let nom = prenomTxtF.text
         let email = emailTxtF.text
         let password = passwordTxtF.text
+        let passwordConfirmation = passwordconfirmationTxtF.text
         let phone = phoneTxtF.text
         if prenom == "" || nom == "" || email == "" || password == "" || phone == ""{
             //1
@@ -47,11 +74,34 @@ class SignUpViewController: UIViewController {
             //4
             self.present(alert, animated: true, completion: nil)
         }else{
-            let user = UserInfo.init(nom: nom!, prenom: prenom!, email: email!, password: password!, role: selectedRole!, telephone: phone!)
-            userViewModel?.signUp(user: user)
-            self.navigationController?.popToRootViewController(animated: false)
+            if password == passwordConfirmation {
+                if phone!.count == 8 {
+                    let user = UserInfo.init(nom: nom!, prenom: prenom!, email: email!, password: password!, role: selectedRole!, telephone: phone!)
+                   self.callToViewModelForCheckEmail(email: email!,user: user)
+                    
+                }else{
+                    //1
+                    let alert = UIAlertController(title: "ERROR", message: "You must have a valid phone number with 8 number", preferredStyle: .alert)
+                    //2
+                    let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    //3
+                    alert.addAction(action)
+                    //4
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }else{
+                //1
+                let alert = UIAlertController(title: "ERROR", message: "You're Password does not match with Password Confirmation", preferredStyle: .alert)
+                //2
+                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                //3
+                alert.addAction(action)
+                //4
+                self.present(alert, animated: true, completion: nil)
+            }
         }
     }
+    
 }
 
 extension SignUpViewController: UIPickerViewDataSource, UIPickerViewDelegate {

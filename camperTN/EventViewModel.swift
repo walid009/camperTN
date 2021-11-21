@@ -26,8 +26,8 @@ class EventViewModel: NSObject{
         //getAllEvents()
     }
     
-    func getAllEvents() {
-        self.apiEvent!.getEvents { eventData in
+    func getAllEvents(token: String) {
+        self.apiEvent!.getEvents(token: token) { eventData in
             self.eventData = eventData
         }
     }

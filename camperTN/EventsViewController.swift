@@ -11,6 +11,8 @@ class EventsViewController: UIViewController,UITableViewDataSource,UITableViewDe
     //MARK: -var
     var eventViewModel: EventViewModel?
     var data = [EventData]()
+    //let
+    let defaults = UserDefaults.standard
     //MARK: -IBOutlet
     @IBOutlet weak var eventTable: UITableView!
     
@@ -27,8 +29,12 @@ class EventsViewController: UIViewController,UITableViewDataSource,UITableViewDe
     //MARK: -function
     
     func callToViewModelForUIUpdate(){
+        guard let token = defaults.string(forKey: "jsonwebtoken") else{
+            return
+        }
+        print("=======>\(token)")
         eventViewModel = EventViewModel()
-        eventViewModel?.getAllEvents()
+        eventViewModel?.getAllEvents(token: token)
         self.eventViewModel!.bindEventViewModelToController = {
             self.updateDataSource()
         }
@@ -50,27 +56,16 @@ class EventsViewController: UIViewController,UITableViewDataSource,UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") 
         let contentView = cell?.contentView
         //widgets
         let label = contentView?.viewWithTag(1) as! UILabel
         let imageView = contentView?.viewWithTag(3) as! UIImageView
-       // let editBTN = contentView?.viewWithTag(4) as! UIButton
-       // let deleteBTN = contentView?.viewWithTag(5) as! UIButton
         //bind
         label.text = data[indexPath.row].titre
         imageView.image = UIImage(named: "tes")
-       /* deleteBTN.tag = indexPath.row
-        deleteBTN.addTarget(self, action: #selector(EventsViewController.DeleteBtnPressed(sender:)), for: .touchUpInside)*/
-        
-        //print("==>\(data[indexPath.row].titre)")
         return cell!
     }
-    
-    /*@objc func DeleteBtnPressed(sender: Int) {
-        
-        print(sender)
-    }*/
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
@@ -80,10 +75,19 @@ class EventsViewController: UIViewController,UITableViewDataSource,UITableViewDe
             tableView.reloadData()
         }
     }
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .normal,
+                                        title: "Edit") { (action, view, completionHandler) in
+            self.performSegue(withIdentifier: "ShowUpdateEvent", sender: indexPath)
+            completionHandler(true)
+        }
+        action.backgroundColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
+        return UISwipeActionsConfiguration(actions: [action])
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(data[indexPath.row].titre)
-        self.performSegue(withIdentifier: "ShowUpdateEvent", sender: indexPath)
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

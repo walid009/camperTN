@@ -14,6 +14,8 @@ struct EventData: Codable {
     let position : Position?
     let createur: User?
     let participants: [Participant]?
+    //let createdAt: Date
+    //let updatedAt: Date
 }
 
 struct EventDataUpdate: Codable {

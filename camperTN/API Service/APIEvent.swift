@@ -8,10 +8,24 @@
 import Foundation
 
 class APIEvent: NSObject{
-    private let sourcesURL = URL(string: "http://localhost:3000/events")!
-    
-    func getEvents(completion : @escaping ([EventData]) -> ()){
-        URLSession.shared.dataTask(with: sourcesURL) { (data, urlResponse, error) in
+    func getEvents(token: String,completion : @escaping ([EventData]) -> ()){
+        guard let url = URL(string: "http://localhost:3000/events") else {
+            return
+        }
+        var request = URLRequest(url: url)
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else{
+                print("error !")
+                return
+            }
+            guard let eventData = try? JSONDecoder().decode([EventData].self, from: data) else{
+                print("no data event")
+                return
+            }
+            completion(eventData)
+        }.resume()
+        /*URLSession.shared.dataTask(with: request) { (data, urlResponse, error) in
             if let data = data {
                 
                 let jsonDecoder = JSONDecoder()
@@ -19,11 +33,11 @@ class APIEvent: NSObject{
                 let empData = try! jsonDecoder.decode([EventData].self, from: data)
                     completion(empData)
             }
-        }.resume()
+        }.resume()*/
     }
     
     func createEvent(event: Event, completion: @escaping(Error?) -> () ){
-        guard let url = URL(string: "http://localhost:3000/event/create") else { return }
+        guard let url = URL(string: "http://localhost:3000/events/create") else { return }
         do {
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "POST"
@@ -54,7 +68,7 @@ class APIEvent: NSObject{
     }
     
     func updateEvent(event: EventDataUpdate, completion: @escaping(Error?) -> () ){
-        guard let url = URL(string: "http://localhost:3000/event/update/\(event._id)") else { return }
+        guard let url = URL(string: "http://localhost:3000/events/update/\(event._id)") else { return }
         do {
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "PUT"
@@ -75,7 +89,7 @@ class APIEvent: NSObject{
 
     
     func deleteEvent(event: EventID, completion: @escaping(Error?) -> () ){
-        guard let url = URL(string: "http://localhost:3000/event/delete/\(event._id)") else { return }
+        guard let url = URL(string: "http://localhost:3000/events/delete/\(event._id)") else { return }
         
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "DELETE"

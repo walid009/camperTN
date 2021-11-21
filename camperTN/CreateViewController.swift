@@ -21,8 +21,28 @@ class CreateViewController: UIViewController {
     }
     
     @IBAction func AddEventBtnPressed(_ sender: Any) {
-        let event = Event.init(titre: titleLB.text ?? "", description: desciptionTXTV.text ?? "", position: nil, createur: nil, participants: nil)
-        eventViewModel.createEvent(eventToCreate: event)
+        if titleLB.text == "" || desciptionTXTV.text == "" {
+            let alert = UIAlertController(title: "Error", message: "Complete All Field !", preferredStyle: .alert)
+            //2
+            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+            //3
+            alert.addAction(action)
+            //4
+            self.present(alert, animated: false, completion: nil)
+        }else{
+            let event = Event.init(titre: titleLB.text ?? "", description: desciptionTXTV.text ?? "", position: nil, createur: nil, participants: nil)
+            eventViewModel.createEvent(eventToCreate: event)
+            let alert = UIAlertController(title: "Success", message: "Event Created", preferredStyle: .alert)
+            //2
+            let action = UIAlertAction(title: "OK", style: .default,handler: { UIAlertAction in
+                self.desciptionTXTV.text = ""
+                self.titleLB.text = ""
+            })
+            //3
+            alert.addAction(action)
+            //4
+            self.present(alert, animated: false, completion: nil)
+        }
     }
     
     @IBAction func btnBackPressed(_ sender: Any) {

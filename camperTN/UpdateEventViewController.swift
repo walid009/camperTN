@@ -35,8 +35,19 @@ class UpdateEventViewController: UIViewController {
     @IBAction func UpdateBtnPressed(_ sender: UIButton) {
         let x = titreLB.text
         let y = descTxt.text
-        let event = EventDataUpdate.init(_id: id!, titre: x!, description: y!)
-        eventViewModel?.updateEvent(eventToUpdate: event)
+        if x == "" || y == "" {
+            let alert = UIAlertController(title: "Error", message: "Complete All Field !", preferredStyle: .alert)
+            //2
+            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+            //3
+            alert.addAction(action)
+            //4
+            self.present(alert, animated: false, completion: nil)
+        }else{
+            let event = EventDataUpdate.init(_id: id!, titre: x!, description: y!)
+            eventViewModel?.updateEvent(eventToUpdate: event)
+            self.navigationController?.popViewController(animated: false)
+        }
     }
     /*
     // MARK: - Navigation

@@ -11,6 +11,8 @@ class CEventsViewController: UIViewController,UITableViewDataSource,UITableViewD
     //MARK: -var
     var eventViewModel: EventViewModel?
     var data = [EventData]()
+    //let
+    let defaults = UserDefaults.standard
     //MARK: -IBOutlet
     @IBOutlet weak var tableEvents: UITableView!
     
@@ -18,15 +20,22 @@ class CEventsViewController: UIViewController,UITableViewDataSource,UITableViewD
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.isHidden = true
-        callToViewModelForUIUpdate()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        callToViewModelForUIUpdate()
     }
     
     //MARK: -function
     
     func callToViewModelForUIUpdate(){
+        guard let token = defaults.string(forKey: "jsonwebtoken") else{
+            return
+        }
+        print("=======>\(token)")
         eventViewModel = EventViewModel()
-        eventViewModel?.getAllEvents()
+        eventViewModel?.getAllEvents(token: token)
         self.eventViewModel!.bindEventViewModelToController = {
             self.updateDataSource()
         }

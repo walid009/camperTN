@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24B9D2035583ADB63B1A52E5 /* Pods_camperTN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCAD410FAF4043EA9792AB52 /* Pods_camperTN.framework */; };
 		D6385E5B2731EF68006C7E15 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6385E5A2731EF68006C7E15 /* EventsViewController.swift */; };
 		D64682A02731B72B000917DA /* SignUpMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646829F2731B72B000917DA /* SignUpMethodViewController.swift */; };
 		D64682A22731B73E000917DA /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64682A12731B73E000917DA /* SignUpViewController.swift */; };
@@ -19,6 +20,7 @@
 		D66AECEA273B13E600CE713C /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66AECE9273B13E600CE713C /* UserViewModel.swift */; };
 		D66AECEC273B13F900CE713C /* APIUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66AECEB273B13F900CE713C /* APIUser.swift */; };
 		D66AECEE273B144C00CE713C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66AECED273B144C00CE713C /* User.swift */; };
+		D6AB0BB92748662B00D536F9 /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6AB0BB82748662B00D536F9 /* credentials.plist */; };
 		D6AFFBC627346ADB0010829C /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AFFBC527346ADB0010829C /* Event.swift */; };
 		D6AFFBC82734727C0010829C /* APIEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AFFBC72734727C0010829C /* APIEvent.swift */; };
 		D6AFFBCA273486CD0010829C /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AFFBC9273486CD0010829C /* EventViewModel.swift */; };
@@ -34,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A9AAE156AD920B6466549E4 /* Pods-camperTN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-camperTN.debug.xcconfig"; path = "Target Support Files/Pods-camperTN/Pods-camperTN.debug.xcconfig"; sourceTree = "<group>"; };
+		3F878072E769FF171F272E0C /* Pods-camperTN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-camperTN.release.xcconfig"; path = "Target Support Files/Pods-camperTN/Pods-camperTN.release.xcconfig"; sourceTree = "<group>"; };
 		D6385E5A2731EF68006C7E15 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		D646829F2731B72B000917DA /* SignUpMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpMethodViewController.swift; sourceTree = "<group>"; };
 		D64682A12731B73E000917DA /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -46,6 +50,7 @@
 		D66AECE9273B13E600CE713C /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		D66AECEB273B13F900CE713C /* APIUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUser.swift; sourceTree = "<group>"; };
 		D66AECED273B144C00CE713C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D6AB0BB82748662B00D536F9 /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
 		D6AFFBC527346ADB0010829C /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		D6AFFBC72734727C0010829C /* APIEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEvent.swift; sourceTree = "<group>"; };
 		D6AFFBC9273486CD0010829C /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
@@ -60,6 +65,7 @@
 		D6FA4E61272DE65800E122E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D6FA4E64272DE65800E122E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D6FA4E66272DE65800E122E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FCAD410FAF4043EA9792AB52 /* Pods_camperTN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_camperTN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,12 +73,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24B9D2035583ADB63B1A52E5 /* Pods_camperTN.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B1697939911DCC050201A0EC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0A9AAE156AD920B6466549E4 /* Pods-camperTN.debug.xcconfig */,
+				3F878072E769FF171F272E0C /* Pods-camperTN.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C344DA29B14DE019D1D89EBB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FCAD410FAF4043EA9792AB52 /* Pods_camperTN.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D646829E2731B67F000917DA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +181,8 @@
 			children = (
 				D6FA4E54272DE65700E122E0 /* camperTN */,
 				D6FA4E53272DE65700E122E0 /* Products */,
+				B1697939911DCC050201A0EC /* Pods */,
+				C344DA29B14DE019D1D89EBB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -180,6 +206,7 @@
 				D6FA4E61272DE65800E122E0 /* Assets.xcassets */,
 				D6FA4E63272DE65800E122E0 /* LaunchScreen.storyboard */,
 				D6FA4E66272DE65800E122E0 /* Info.plist */,
+				D6AB0BB82748662B00D536F9 /* credentials.plist */,
 				D6FA4E5E272DE65700E122E0 /* camperTN.xcdatamodeld */,
 			);
 			path = camperTN;
@@ -192,9 +219,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D6FA4E69272DE65800E122E0 /* Build configuration list for PBXNativeTarget "camperTN" */;
 			buildPhases = (
+				DF15F59144CC358C41C7CF0E /* [CP] Check Pods Manifest.lock */,
 				D6FA4E4E272DE65600E122E0 /* Sources */,
 				D6FA4E4F272DE65600E122E0 /* Frameworks */,
 				D6FA4E50272DE65600E122E0 /* Resources */,
+				0CB7036607E4310607CCC54A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -244,12 +273,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6FA4E65272DE65800E122E0 /* LaunchScreen.storyboard in Resources */,
+				D6AB0BB92748662B00D536F9 /* credentials.plist in Resources */,
 				D6FA4E62272DE65800E122E0 /* Assets.xcassets in Resources */,
 				D6FA4E5D272DE65700E122E0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0CB7036607E4310607CCC54A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-camperTN/Pods-camperTN-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-camperTN/Pods-camperTN-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-camperTN/Pods-camperTN-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DF15F59144CC358C41C7CF0E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-camperTN-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D6FA4E4E272DE65600E122E0 /* Sources */ = {
@@ -420,6 +492,7 @@
 		};
 		D6FA4E6A272DE65800E122E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A9AAE156AD920B6466549E4 /* Pods-camperTN.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -449,6 +522,7 @@
 		};
 		D6FA4E6B272DE65800E122E0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F878072E769FF171F272E0C /* Pods-camperTN.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
