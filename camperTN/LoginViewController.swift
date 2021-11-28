@@ -21,6 +21,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
         
+        
         userData = UserInfoLogin.init(_id: "",nom: "", prenom: "", email: "", password: "", role: "", telephone: "")
         userViewModel = UserViewModel()
         // Do any additional setup after loading the view.
