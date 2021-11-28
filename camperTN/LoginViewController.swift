@@ -17,9 +17,19 @@ class LoginViewController: UIViewController {
     //
     @IBOutlet weak var emailTxtF: UITextField!
     @IBOutlet weak var passwordTxtF: UITextField!
+    @IBOutlet weak var loginBTN: UIButton!
+    @IBOutlet weak var googleBTN: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
+        
+        googleBTN.layer.cornerRadius = 30
+        googleBTN.layer.shadowRadius = 10
+        googleBTN.layer.borderWidth = 0
+        
+        loginBTN.layer.cornerRadius = 25
+        loginBTN.layer.borderWidth = 1
+        loginBTN.layer.borderColor = UIColor.black.cgColor
         
         userData = UserInfoLogin.init(_id: "",nom: "", prenom: "", email: "", password: "", role: "", telephone: "")
         userViewModel = UserViewModel()
@@ -49,6 +59,9 @@ class LoginViewController: UIViewController {
                         currentUser.email = self.userData?.email
                         currentUser.password = self.userData?.password
                         currentUser.role = self.userData?.role
+                        currentUser.nom = self.userData?.nom
+                        currentUser.prenom = self.userData?.prenom
+                        currentUser.telephone = self.userData?.telephone
                         if self.userData?.role == "Organisateur" {
                             self.performSegue(withIdentifier: "ShowViewOrganisateurEvents", sender: nil)
                         }
@@ -116,7 +129,6 @@ class LoginViewController: UIViewController {
     @IBAction func SignWithGoogle(_ sender: Any) {
         GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) { user, error in
             guard error == nil else { return }
-
             // If sign in succeeded, display the app's main content View.
             self.callToViewModelForCheckEmail(profile: (user?.profile)!)
             
@@ -145,6 +157,9 @@ class LoginViewController: UIViewController {
                                     currentUser.email = self.userData?.email
                                     currentUser.password = ""
                                     currentUser.role = self.userData?.role
+                                    currentUser.nom = self.userData?.nom
+                                    currentUser.prenom = self.userData?.prenom
+                                    currentUser.telephone = self.userData?.telephone
                                     if self.userData?.role == "Organisateur" {
                                         self.performSegue(withIdentifier: "ShowViewOrganisateurEvents", sender: nil)
                                     }
@@ -168,7 +183,7 @@ class LoginViewController: UIViewController {
             if let vc = segue.destination as? SignUpMethodViewController{
                 vc.email = profile.email
                 vc.nom = profile.familyName
-                vc.prenom = profile.givenName
+                vc.prenom = profile.name
             }
         }
     }

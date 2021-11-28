@@ -13,15 +13,15 @@ struct EventData: Codable {
     let description: String
     let position : Position?
     let createur: User?
-    let participants: [Participant]?
+    let participants: [UserDataWithNotPassword]?
     //let createdAt: Date
     //let updatedAt: Date
 }
-
 struct EventDataUpdate: Codable {
     let _id: String
     let titre: String
     let description: String
+    
 }
 
 struct Event: Codable {

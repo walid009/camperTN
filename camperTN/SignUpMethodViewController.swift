@@ -21,11 +21,16 @@ class SignUpMethodViewController: UIViewController {
     @IBOutlet weak var passwordConfirmationTxtF: UITextField!
     @IBOutlet weak var rolePicker: UIPickerView!
     @IBOutlet weak var phoneTxtF: UITextField!
+    @IBOutlet weak var continueBTN: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        continueBTN.layer.cornerRadius = 25
+        continueBTN.layer.borderWidth = 1
+        continueBTN.layer.borderColor = UIColor.black.cgColor
         
         rolePicker.dataSource = self
         rolePicker.delegate = self

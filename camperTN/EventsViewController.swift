@@ -24,6 +24,7 @@ class EventsViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     override func viewWillAppear(_ animated: Bool) {
         callToViewModelForUIUpdate()
+        //print(data)
     }
     
     //MARK: -function
@@ -86,8 +87,7 @@ class EventsViewController: UIViewController,UITableViewDataSource,UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(data[indexPath.row].titre)
-        
+        self.performSegue(withIdentifier: "showDetailParticipate", sender: indexPath)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -98,6 +98,14 @@ class EventsViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 vc.id = event._id
                 vc.titre = event.titre
                 vc.desc = event.description
+            }
+        }
+        if segue.identifier == "showDetailParticipate"{
+            let indexPath = sender as! IndexPath
+            let event = data[indexPath.row]
+            if let vc = segue.destination as? DetailParticipantViewController{
+                vc.titre = event.titre
+                vc.listCamper = event.participants
             }
         }
     }

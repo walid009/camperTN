@@ -17,9 +17,25 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var prenomTxtF: UITextField!
     @IBOutlet weak var nomTxtF: UITextField!
     @IBOutlet weak var phoneTxtF: UITextField!
+    @IBOutlet weak var infoUIVIew: UIView!
+    @IBOutlet weak var updateBTN: UIButton!
+    @IBOutlet weak var switchUI: UISwitch!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        infoUIVIew.layer.cornerRadius = 17
+        infoUIVIew.layer.borderWidth = 0.1
+        infoUIVIew.layer.shadowColor = UIColor.lightGray.cgColor
+        infoUIVIew.layer.shadowOpacity = 1
+        infoUIVIew.layer.shadowOffset = .zero
+        infoUIVIew.layer.shadowRadius = 10
+        infoUIVIew.layer.shouldRasterize = true
+        infoUIVIew.layer.rasterizationScale = UIScreen.main.scale
+        
+        updateBTN.layer.cornerRadius = 25
+        updateBTN.layer.borderWidth = 1
+        updateBTN.layer.borderColor = UIColor.black.cgColor
         
         // Do any additional setup after loading the view.
     }
@@ -89,6 +105,33 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    @IBAction func editSwitcherPressed(_ sender: Any) {
+        if switchUI.isOn {
+            nomTxtF.borderStyle = .roundedRect
+            nomTxtF.backgroundColor = UIColor.systemGray6
+            nomTxtF.isEnabled = true
+            
+            prenomTxtF.borderStyle = .roundedRect
+            prenomTxtF.backgroundColor = UIColor.systemGray6
+            prenomTxtF.isEnabled = true
+            
+            phoneTxtF.borderStyle = .roundedRect
+            phoneTxtF.backgroundColor = UIColor.systemGray6
+            phoneTxtF.isEnabled = true
+        }else{
+            nomTxtF.borderStyle = .none
+            nomTxtF.backgroundColor = UIColor.lightText
+            nomTxtF.isEnabled = false
+            
+            prenomTxtF.borderStyle = .none
+            prenomTxtF.backgroundColor = UIColor.lightText
+            prenomTxtF.isEnabled = false
+            
+            phoneTxtF.borderStyle = .none
+            phoneTxtF.backgroundColor = UIColor.lightText
+            phoneTxtF.isEnabled = false
+        }
+    }
     /*
     // MARK: - Navigation
 

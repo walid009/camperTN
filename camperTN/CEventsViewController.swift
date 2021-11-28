@@ -78,6 +78,7 @@ class CEventsViewController: UIViewController,UITableViewDataSource,UITableViewD
             if let vc = segue.destination as? DetailEventViewController {
                 vc.titre = event.titre
                 vc.desc = event.description
+                vc.idEvent = event._id
             }
         }
     }

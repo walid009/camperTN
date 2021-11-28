@@ -17,6 +17,12 @@ class EventViewModel: NSObject{
         }
     }
     
+    private(set) var existUserParticipate : EmailExist! {
+        didSet {
+            self.bindEventViewModelToController()
+        }
+    }
+    
     var bindEventViewModelToController : (() -> ()) = {
     }
     
@@ -29,6 +35,7 @@ class EventViewModel: NSObject{
     func getAllEvents(token: String) {
         self.apiEvent!.getEvents(token: token) { eventData in
             self.eventData = eventData
+            //print(eventData)
         }
     }
     
@@ -50,4 +57,15 @@ class EventViewModel: NSObject{
         })
     }
     
+    func checkUserExistInEvent(id: String,email: String) {
+        apiEvent?.CheckUserAlreadyParticipate(id: id, email: email, completion: { EmailExist in
+            self.existUserParticipate = EmailExist
+        })
+    }
+    
+    func participateUserToEvent(idEvent:String,user: UserDataWithNotPassword){
+        apiEvent?.updateEventWithUserParticipate(idEvent: idEvent, user: user, completion: { error in
+            print(error ?? "dddzze")
+        })
+    }
 }

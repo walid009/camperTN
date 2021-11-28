@@ -100,6 +100,43 @@ class APIEvent: NSObject{
             }.resume()
     }
     
+    func CheckUserAlreadyParticipate(id: String,email: String,completion : @escaping (EmailExist) -> ()){
+        guard let url = URL(string: "http://localhost:3000/events/UserAlreadyParticipate/\(id)/\(email)") else {
+            return
+        }
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data, error == nil else{
+                print("error !")
+                return
+            }
+            guard let emailExist = try? JSONDecoder().decode(EmailExist.self, from: data) else{
+                print("no data event")
+                return
+            }
+            completion(emailExist)
+        }.resume()
+    }
+    
+    func updateEventWithUserParticipate(idEvent:String,user: UserDataWithNotPassword, completion: @escaping(Error?) -> () ){
+        guard let url = URL(string: "http://localhost:3000/events/participate/\(idEvent)") else { return }
+        do {
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = "PUT"
+            urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            urlRequest.httpBody = try JSONEncoder().encode(user)
+            print(user)
+            print(try JSONEncoder().encode(user))
+            URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+                if let err = error {
+                    print(err)
+                }
+            }.resume()
+        }catch{
+            print("failed")
+            completion(error)
+        }
+    }
+    
 }
 
 /*struct APIRequest {

@@ -20,9 +20,14 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordconfirmationTxtF: UITextField!
     @IBOutlet weak var rolePicker: UIPickerView!
     @IBOutlet weak var phoneTxtF: UITextField!
+    @IBOutlet weak var signupBTN: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        signupBTN.layer.cornerRadius = 25
+        signupBTN.layer.borderWidth = 1
+        signupBTN.layer.borderColor = UIColor.black.cgColor
         
         rolePicker.dataSource = self
         rolePicker.delegate = self
@@ -59,7 +64,7 @@ class SignUpViewController: UIViewController {
     
     @IBAction func btnSingupPressed(_ sender: Any) {
         let prenom = prenomTxtF.text
-        let nom = prenomTxtF.text
+        let nom = nomTxtF.text
         let email = emailTxtF.text
         let password = passwordTxtF.text
         let passwordConfirmation = passwordconfirmationTxtF.text

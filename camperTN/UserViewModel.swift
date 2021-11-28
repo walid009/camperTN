@@ -29,6 +29,12 @@ class UserViewModel: NSObject{
         }
     }
     
+    private(set) var keyIsOrNotCorrect : KeyCorrect! {
+        didSet {
+            self.bindUserViewModelToController()
+        }
+    }
+    
     var  bindUserViewModelToController : (() -> ()) = {
     }
     
@@ -88,6 +94,25 @@ class UserViewModel: NSObject{
             self.emailExist = EmailExist
         })
     }
+    
+    func checkKeyCorrectOrNot(email: String,key: String) {
+        apiUser?.CheckIfKeyResetCorrect(email: email, key: key, completion: { KeyCorrect in
+            self.keyIsOrNotCorrect = KeyCorrect
+        })
+    }
+    
+    func sendMailResetPassword(email: String){
+        self.apiUser?.updateSendMailForgetPassword(email: email, completion: { error in
+            print(error ?? "error sendMailResetPassword")
+        })
+    }
+    
+    func sendMailModifiedPasswordSuccess(email: String,password: String){
+        self.apiUser?.updateSendModifiedPassword(email: email, password: password, completion: { error in
+            print(error ?? "")
+        })
+    }
+    
     /*func getAllEvents() {
         self.apiEvent!.getEvents { eventData in
             self.eventData = eventData

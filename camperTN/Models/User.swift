@@ -12,10 +12,26 @@ class currentUser{
     static var email: String?
     static var password : String?
     static var role: String?
+    static var nom: String?
+    static var prenom: String?
+    static var telephone: String?
 }
 
 struct EmailExist: Codable{
     let exist: Bool
+}
+
+struct KeyCorrect: Codable{
+    let key: Bool
+}
+
+struct UserDataWithNotPassword: Codable {
+    let _id: String
+    let nom: String
+    let prenom: String
+    let email: String
+    let role: String
+    let telephone: String
 }
 
 struct UserInfoLogin: Codable {

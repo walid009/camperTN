@@ -155,4 +155,48 @@ class APIUser: NSObject{
             }
         }.resume()*/
     }
+    
+    func CheckIfKeyResetCorrect(email: String,key: String,completion : @escaping (KeyCorrect) -> ()){
+        guard let url = URL(string: "http://localhost:3000/users/checkKeyReset/\(email)/\(key)") else {
+            return
+        }
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data, error == nil else{
+                print("error !")
+                return
+            }
+            guard let keyIsOrNotCorrect = try? JSONDecoder().decode(KeyCorrect.self, from: data) else{
+                print("no data event")
+                return
+            }
+            completion(keyIsOrNotCorrect)
+        }.resume()
+    }
+    
+    func updateSendMailForgetPassword(email: String, completion: @escaping(Error?) -> () ){
+        guard let url = URL(string: "http://localhost:3000/users/resetpassword/\(email)") else { return }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "PUT"
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+            if let err = error {
+                print(err)
+            }
+        }.resume()
+    }
+    
+    func updateSendModifiedPassword(email: String,password: String, completion: @escaping(Error?) -> () ){
+        guard let url = URL(string: "http://localhost:3000/users/sendmodifiedpassword/\(email)/\(password)") else { return }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "PUT"
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+            if let err = error {
+                print(err)
+            }
+        }.resume()
+    }
+    
 }

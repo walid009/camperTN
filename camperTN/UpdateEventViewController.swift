@@ -16,9 +16,25 @@ class UpdateEventViewController: UIViewController {
     //MARK: -IBOutlet
     @IBOutlet weak var titreLB: UITextField!
     @IBOutlet weak var descTxt: UITextView!
+    @IBOutlet weak var viewUI: UIView!
+    @IBOutlet weak var updateBTN: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewUI.layer.cornerRadius = 17
+        viewUI.layer.borderWidth = 0.1
+        viewUI.layer.shadowColor = UIColor.lightGray.cgColor
+        viewUI.layer.shadowOpacity = 1
+        viewUI.layer.shadowOffset = .zero
+        viewUI.layer.shadowRadius = 10
+        //viewUI.layer.shadowPath = UIBezierPath(rect: viewUI.bounds).cgPath
+        viewUI.layer.shouldRasterize = true
+        viewUI.layer.rasterizationScale = UIScreen.main.scale
+        
+        updateBTN.layer.cornerRadius = 25
+        updateBTN.layer.borderWidth = 1
+        updateBTN.layer.borderColor = UIColor.black.cgColor
 
         titreLB.text = titre
         descTxt.text = desc

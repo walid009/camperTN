@@ -24,6 +24,8 @@
 		D6AFFBC627346ADB0010829C /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AFFBC527346ADB0010829C /* Event.swift */; };
 		D6AFFBC82734727C0010829C /* APIEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AFFBC72734727C0010829C /* APIEvent.swift */; };
 		D6AFFBCA273486CD0010829C /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AFFBC9273486CD0010829C /* EventViewModel.swift */; };
+		D6E1DF3F2753934E00560C90 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E1DF3E2753934E00560C90 /* ResetPasswordViewController.swift */; };
+		D6E1DF412753CCFE00560C90 /* DetailParticipantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E1DF402753CCFE00560C90 /* DetailParticipantViewController.swift */; };
 		D6F2728727380DC200F9FE36 /* TabBarOrgController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F2728627380DC200F9FE36 /* TabBarOrgController.swift */; };
 		D6F883D62736D84E0038223D /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F883D52736D84E0038223D /* CreateViewController.swift */; };
 		D6FA4E56272DE65700E122E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FA4E55272DE65700E122E0 /* AppDelegate.swift */; };
@@ -54,6 +56,8 @@
 		D6AFFBC527346ADB0010829C /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		D6AFFBC72734727C0010829C /* APIEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEvent.swift; sourceTree = "<group>"; };
 		D6AFFBC9273486CD0010829C /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
+		D6E1DF3E2753934E00560C90 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		D6E1DF402753CCFE00560C90 /* DetailParticipantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailParticipantViewController.swift; sourceTree = "<group>"; };
 		D6F2728627380DC200F9FE36 /* TabBarOrgController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarOrgController.swift; sourceTree = "<group>"; };
 		D6F883D52736D84E0038223D /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 		D6FA4E52272DE65700E122E0 /* camperTN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = camperTN.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +107,7 @@
 				D6FA4E59272DE65700E122E0 /* LoginViewController.swift */,
 				D646829F2731B72B000917DA /* SignUpMethodViewController.swift */,
 				D64682A12731B73E000917DA /* SignUpViewController.swift */,
+				D6E1DF3E2753934E00560C90 /* ResetPasswordViewController.swift */,
 				D65C77472739283A00A5057F /* Admin */,
 				D6F883D42736D7400038223D /* organisateur */,
 				D65C77462739282B00A5057F /* Campeur */,
@@ -172,6 +177,7 @@
 				D6F883D52736D84E0038223D /* CreateViewController.swift */,
 				D6F2728627380DC200F9FE36 /* TabBarOrgController.swift */,
 				D66AECE7273AED6E00CE713C /* UpdateEventViewController.swift */,
+				D6E1DF402753CCFE00560C90 /* DetailParticipantViewController.swift */,
 			);
 			name = organisateur;
 			sourceTree = "<group>";
@@ -329,8 +335,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6F883D62736D84E0038223D /* CreateViewController.swift in Sources */,
+				D6E1DF412753CCFE00560C90 /* DetailParticipantViewController.swift in Sources */,
 				D65C77492739294100A5057F /* CEventsViewController.swift in Sources */,
 				D6AFFBC82734727C0010829C /* APIEvent.swift in Sources */,
+				D6E1DF3F2753934E00560C90 /* ResetPasswordViewController.swift in Sources */,
 				D6385E5B2731EF68006C7E15 /* EventsViewController.swift in Sources */,
 				D65C774D2739415C00A5057F /* FavoriteViewController.swift in Sources */,
 				D64682A22731B73E000917DA /* SignUpViewController.swift in Sources */,

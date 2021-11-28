@@ -14,8 +14,24 @@ class CreateViewController: UIViewController {
     @IBOutlet weak var titleLB: UITextField!
     @IBOutlet weak var desciptionTXTV: UITextView!
     @IBOutlet weak var dateDP: UIDatePicker!
+    @IBOutlet weak var addBTN: UIButton!
+    @IBOutlet weak var viewUI: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewUI.layer.cornerRadius = 17
+        viewUI.layer.borderWidth = 0.1
+        viewUI.layer.shadowColor = UIColor.lightGray.cgColor
+        viewUI.layer.shadowOpacity = 1
+        viewUI.layer.shadowOffset = .zero
+        viewUI.layer.shadowRadius = 10
+        //viewUI.layer.shadowPath = UIBezierPath(rect: viewUI.bounds).cgPath
+        viewUI.layer.shouldRasterize = true
+        viewUI.layer.rasterizationScale = UIScreen.main.scale
+        
+        addBTN.layer.cornerRadius = 25
+        addBTN.layer.borderWidth = 1
+        addBTN.layer.borderColor = UIColor.black.cgColor
         //self.navigationController?.navigationBar.isHidden = false
         // Do any additional setup after loading the view.
     }
