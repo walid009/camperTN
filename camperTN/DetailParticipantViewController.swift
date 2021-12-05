@@ -6,15 +6,19 @@
 //
 
 import UIKit
+import MapKit
 
 class DetailParticipantViewController: UIViewController,UITableViewDataSource {
     var titre: String?
     var listCamper: [UserDataWithNotPassword]?
+    var latitude:Double?
+    var longitude:Double?
     
     @IBOutlet weak var titleTXTF: UITextField!
     @IBOutlet weak var firstUIV: UIView!
     @IBOutlet weak var secondUIV: UIView!
     @IBOutlet weak var tableUIT: UITableView!
+    @IBOutlet weak var mapV: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
         firstUIV.layer.cornerRadius = 17
@@ -37,6 +41,14 @@ class DetailParticipantViewController: UIViewController,UITableViewDataSource {
 
         titleTXTF.text = titre!
         title = titre!
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
+        
+        mapV.addAnnotation(annotation)
+        
+        let region = MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+        mapV.setRegion(region, animated: true)
         // Do any additional setup after loading the view.
     }
     

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class APIEvent: NSObject{
     func getEvents(token: String,completion : @escaping ([EventData]) -> ()){
@@ -37,12 +38,14 @@ class APIEvent: NSObject{
     }
     
     func createEvent(event: Event, completion: @escaping(Error?) -> () ){
-        guard let url = URL(string: "http://localhost:3000/events/create") else { return }
+        guard let url = URL(string: "http://localhost:3000/events/createWithoutImage") else { return }
         do {
+            
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "POST"
             urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
             urlRequest.httpBody = try JSONEncoder().encode(event)
+            
             print(event)
             print(try JSONEncoder().encode(event))
             URLSession.shared.dataTask(with: urlRequest) { data, response, error in
@@ -74,6 +77,7 @@ class APIEvent: NSObject{
             urlRequest.httpMethod = "PUT"
             urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
             urlRequest.httpBody = try JSONEncoder().encode(event)
+            
             print(event)
             print(try JSONEncoder().encode(event))
             URLSession.shared.dataTask(with: urlRequest) { data, response, error in
@@ -138,7 +142,6 @@ class APIEvent: NSObject{
     }
     
 }
-
 /*struct APIRequest {
     let url: String
     func createEvent(event: Event, completion: @escaping(Error?) -> () ){

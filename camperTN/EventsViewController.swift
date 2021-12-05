@@ -98,6 +98,8 @@ class EventsViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 vc.id = event._id
                 vc.titre = event.titre
                 vc.desc = event.description
+                vc.latitude = event.position?.Latitude
+                vc.longitude = event.position?.Longitude
             }
         }
         if segue.identifier == "showDetailParticipate"{
@@ -106,6 +108,8 @@ class EventsViewController: UIViewController,UITableViewDataSource,UITableViewDe
             if let vc = segue.destination as? DetailParticipantViewController{
                 vc.titre = event.titre
                 vc.listCamper = event.participants
+                vc.latitude = event.position?.Latitude
+                vc.longitude = event.position?.Longitude
             }
         }
     }

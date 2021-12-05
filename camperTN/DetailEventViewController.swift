@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import MapKit
+import CoreData
 
 class DetailEventViewController: UIViewController {
     var idEvent: String?
@@ -13,12 +15,18 @@ class DetailEventViewController: UIViewController {
     var desc: String?
     var eventViewModel: EventViewModel?
     var exist:Bool?
+    var latitude:Double?
+    var longitude:Double?
+    var idcreateur: String?
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet weak var titreTxtF: UITextField!
     @IBOutlet weak var descriptionTxtF: UITextView!
     @IBOutlet weak var viewUI: UIView!
     @IBOutlet weak var participateBTN: UIButton!
     @IBOutlet weak var favoriteBTN: UIButton!
+    @IBOutlet weak var mapV: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,12 +54,69 @@ class DetailEventViewController: UIViewController {
         // Do any additional setup after loading the view.
         print(idEvent!)
         print(currentUser.email!)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
+        
+        mapV.addAnnotation(annotation)
+        
+        let region = MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+        mapV.setRegion(region, animated: true)
     }
     
     @IBAction func ParticiperBtnPressed(_ sender: UIButton) {
     }
-    
+
     @IBAction func FavoriteBtnPressed(_ sender: UIButton) {
+        if check() {
+            let alert = UIAlertController(title: "Error", message: "Already added to you're favortie", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            alert.addAction(ok)
+            self.present(alert, animated: true, completion: nil)
+        }else{
+            let entityDescription = NSEntityDescription.entity(forEntityName: "EventCore", in: context)
+            
+            let object = NSManagedObject(entity: entityDescription!, insertInto: context)
+            
+            object.setValue(idEvent!, forKey: "id")
+            object.setValue(titre!, forKey: "titre")
+            object.setValue(desc!, forKey: "desc")
+            object.setValue(latitude!, forKey: "latitude")
+            object.setValue(longitude!, forKey: "longitude")
+            object.setValue(idcreateur!, forKey: "idcreateur")
+            saveItems()
+            let alert = UIAlertController(title: "Susscess", message: "Event \(titre!) added successfully to you're favortie", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            alert.addAction(ok)
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+    }
+    func check() -> Bool {
+        let request = NSFetchRequest<NSManagedObject>(entityName: "EventCore")
+        let predicate = NSPredicate(format: "id like %@", idEvent!)
+        request.predicate = predicate
+                
+        do{
+            let result = try context.fetch(request)
+            if result.count > 0 {
+                return true
+            }
+        }catch{
+            print("error fetch")
+            return false
+        }
+            return false
+    }
+    
+    func saveItems() {
+        if context.hasChanges {
+            do {
+                try self.context.save()
+            } catch {
+                let nserror = error as NSError
+                print("Unresolved error, \(nserror), \(nserror.userInfo)")
+            }
+        }
     }
     
     @IBAction func backBtnPressed(_ sender: Any) {
@@ -99,6 +164,7 @@ class DetailEventViewController: UIViewController {
                 }
             }
         }
+        
     }
     
     /*

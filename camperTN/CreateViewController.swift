@@ -6,16 +6,23 @@
 //
 
 import UIKit
+import MapKit
+import SwiftUI
 
-class CreateViewController: UIViewController {
+class CreateViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate & UINavigationControllerDelegate{
     //MARK: -var
     var eventViewModel = EventViewModel()
+    var latitude:Double?
+    var longitude:Double?
+    var imageSelected: Bool = false
     //MARK: -IBOutlet
     @IBOutlet weak var titleLB: UITextField!
     @IBOutlet weak var desciptionTXTV: UITextView!
     @IBOutlet weak var dateDP: UIDatePicker!
     @IBOutlet weak var addBTN: UIButton!
     @IBOutlet weak var viewUI: UIView!
+    @IBOutlet weak var mapV: MKMapView!
+    @IBOutlet weak var imageV: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,7 +41,43 @@ class CreateViewController: UIViewController {
         addBTN.layer.borderColor = UIColor.black.cgColor
         //self.navigationController?.navigationBar.isHidden = false
         // Do any additional setup after loading the view.
+        
+        /*let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: -37.82, longitude: 145.04)
+        
+        mapV.addAnnotation(annotation)
+        
+        let region = MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+        mapV.setRegion(region, animated: true)*/
+        mapV.delegate = self
     }
+    
+    let annotation = MKPointAnnotation()
+    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+        print("cc")
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        print("zz")
+        annotation.coordinate = CLLocationCoordinate2D(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
+        
+        mapV.addAnnotation(annotation)
+        print(mapV.centerCoordinate.latitude)
+        print(mapV.centerCoordinate.longitude)
+        latitude = mapV.centerCoordinate.latitude
+        longitude = mapV.centerCoordinate.longitude
+        /*let region = MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+        mapV.setRegion(region, animated: true)*/
+    }
+    
+    /*func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView)
+    {
+        print("work")
+        if let annotationTitle = view.annotation?.title
+        {
+            print("User tapped on annotation with title: \(annotationTitle!)")
+        }
+    }*/
     
     @IBAction func AddEventBtnPressed(_ sender: Any) {
         if titleLB.text == "" || desciptionTXTV.text == "" {
@@ -46,32 +89,79 @@ class CreateViewController: UIViewController {
             //4
             self.present(alert, animated: false, completion: nil)
         }else{
-            let event = Event.init(titre: titleLB.text ?? "", description: desciptionTXTV.text ?? "", position: nil, createur: nil, participants: nil)
-            eventViewModel.createEvent(eventToCreate: event)
-            let alert = UIAlertController(title: "Success", message: "Event Created", preferredStyle: .alert)
-            //2
-            let action = UIAlertAction(title: "OK", style: .default,handler: { UIAlertAction in
-                self.desciptionTXTV.text = ""
-                self.titleLB.text = ""
-            })
-            //3
-            alert.addAction(action)
-            //4
-            self.present(alert, animated: false, completion: nil)
+            if latitude != nil && longitude != nil {
+                if imageSelected {
+                    let pos = Position.init(Longitude: longitude!, Latitude: latitude!)
+                    let event = Event.init(titre: titleLB.text ?? "", description: desciptionTXTV.text ?? "", position: pos, idcreateur: currentUser._id ?? "", participants: nil)
+                    eventViewModel.createEvent(eventToCreate: event)
+                    let alert = UIAlertController(title: "Success", message: "Event Created", preferredStyle: .alert)
+                    //2
+                    let action = UIAlertAction(title: "OK", style: .default,handler: { UIAlertAction in
+                        self.desciptionTXTV.text = ""
+                        self.titleLB.text = ""
+                        self.imageV.isHidden = true
+                    })
+                    //3
+                    alert.addAction(action)
+                    //4
+                    self.present(alert, animated: false, completion: nil)
+                }else{
+                    let alert = UIAlertController(title: "Error", message: "You need to upload an image !", preferredStyle: .alert)
+                    //2
+                    let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    //3
+                    alert.addAction(action)
+                    //4
+                    self.present(alert, animated: false, completion: nil)
+                }
+            }else{
+                let alert = UIAlertController(title: "Error", message: "You need to select the position of the event !", preferredStyle: .alert)
+                //2
+                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                //3
+                alert.addAction(action)
+                //4
+                self.present(alert, animated: false, completion: nil)
+            }
         }
     }
     
     @IBAction func btnBackPressed(_ sender: Any) {
         self.navigationController?.popViewController(animated: false)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func uploadBtnPressed(_ sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary;
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
     }
-    */
-
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let imagePicker = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        imageV.isHidden = false
+        imageV.image = imagePicker
+        imageSelected = true
+        
+        //let imgString = convertImageToBase64(image: imageV.image!)
+        //print(imgString)
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true)
+    }
+    
+    func convertImageToBase64(image: UIImage) -> String{
+        let imageData = image.pngData()!
+        return imageData.base64EncodedString(options: Data.Base64EncodingOptions.lineLength64Characters)
+    }
+    
+    func convertBase64ToImage(imageString: String) -> UIImage{
+        let imageData = Data(base64Encoded: imageString,options: Data.Base64DecodingOptions.ignoreUnknownCharacters)!
+        return UIImage(data: imageData)!
+    }
+    
 }

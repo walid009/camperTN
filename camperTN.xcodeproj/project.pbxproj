@@ -16,6 +16,7 @@
 		D65C774D2739415C00A5057F /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65C774C2739415C00A5057F /* FavoriteViewController.swift */; };
 		D65C774F2739416E00A5057F /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65C774E2739416E00A5057F /* ShareViewController.swift */; };
 		D65C77512739425A00A5057F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65C77502739425A00A5057F /* ProfileViewController.swift */; };
+		D65E1F36275CEE1600F71E9F /* DetailFavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65E1F35275CEE1600F71E9F /* DetailFavoriteViewController.swift */; };
 		D66AECE8273AED6E00CE713C /* UpdateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66AECE7273AED6E00CE713C /* UpdateEventViewController.swift */; };
 		D66AECEA273B13E600CE713C /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66AECE9273B13E600CE713C /* UserViewModel.swift */; };
 		D66AECEC273B13F900CE713C /* APIUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66AECEB273B13F900CE713C /* APIUser.swift */; };
@@ -48,6 +49,7 @@
 		D65C774C2739415C00A5057F /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		D65C774E2739416E00A5057F /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		D65C77502739425A00A5057F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D65E1F35275CEE1600F71E9F /* DetailFavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFavoriteViewController.swift; sourceTree = "<group>"; };
 		D66AECE7273AED6E00CE713C /* UpdateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEventViewController.swift; sourceTree = "<group>"; };
 		D66AECE9273B13E600CE713C /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		D66AECEB273B13F900CE713C /* APIUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUser.swift; sourceTree = "<group>"; };
@@ -120,9 +122,9 @@
 			children = (
 				D65C77482739294100A5057F /* CEventsViewController.swift */,
 				D65C774A273935AA00A5057F /* DetailEventViewController.swift */,
-				D65C774C2739415C00A5057F /* FavoriteViewController.swift */,
 				D65C774E2739416E00A5057F /* ShareViewController.swift */,
 				D65C77502739425A00A5057F /* ProfileViewController.swift */,
+				D65E1F32275CE0CA00F71E9F /* favorite */,
 			);
 			name = Campeur;
 			sourceTree = "<group>";
@@ -132,6 +134,15 @@
 			children = (
 			);
 			path = Admin;
+			sourceTree = "<group>";
+		};
+		D65E1F32275CE0CA00F71E9F /* favorite */ = {
+			isa = PBXGroup;
+			children = (
+				D65C774C2739415C00A5057F /* FavoriteViewController.swift */,
+				D65E1F35275CEE1600F71E9F /* DetailFavoriteViewController.swift */,
+			);
+			name = favorite;
 			sourceTree = "<group>";
 		};
 		D6AFFBC1273469440010829C /* ViewModels */ = {
@@ -345,6 +356,7 @@
 				D65C774F2739416E00A5057F /* ShareViewController.swift in Sources */,
 				D65C77512739425A00A5057F /* ProfileViewController.swift in Sources */,
 				D6AFFBCA273486CD0010829C /* EventViewModel.swift in Sources */,
+				D65E1F36275CEE1600F71E9F /* DetailFavoriteViewController.swift in Sources */,
 				D66AECEC273B13F900CE713C /* APIUser.swift in Sources */,
 				D6FA4E5A272DE65700E122E0 /* LoginViewController.swift in Sources */,
 				D6FA4E56272DE65700E122E0 /* AppDelegate.swift in Sources */,

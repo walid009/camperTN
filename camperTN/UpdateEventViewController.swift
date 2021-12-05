@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 
 class UpdateEventViewController: UIViewController {
     //MARK: -var
@@ -13,11 +14,14 @@ class UpdateEventViewController: UIViewController {
     var desc: String?
     var id: String?
     var eventViewModel: EventViewModel?
+    var latitude:Double?
+    var longitude:Double?
     //MARK: -IBOutlet
     @IBOutlet weak var titreLB: UITextField!
     @IBOutlet weak var descTxt: UITextView!
     @IBOutlet weak var viewUI: UIView!
     @IBOutlet weak var updateBTN: UIButton!
+    @IBOutlet weak var mapV: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +44,14 @@ class UpdateEventViewController: UIViewController {
         descTxt.text = desc
         print(id ?? "no id")
         eventViewModel = EventViewModel()
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
+        
+        mapV.addAnnotation(annotation)
+        
+        let region = MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+        mapV.setRegion(region, animated: true)
         // Do any additional setup after loading the view.
     }
     

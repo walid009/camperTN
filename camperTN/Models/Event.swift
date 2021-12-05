@@ -6,13 +6,28 @@
 //
 
 import Foundation
+import UIKit
+
+struct Media {
+    let key: String
+    let filename: String
+    let data: Data
+    let mimeType: String
+    init?(withImage image: UIImage, forKey key: String) {
+        self.key = key
+        self.mimeType = "image/jpeg"
+        self.filename = "imagefile.jpg"
+        guard let data = image.jpegData(compressionQuality: 0.7) else { return nil }
+        self.data = data
+    }
+}
 
 struct EventData: Codable {
     let _id: String?
     let titre: String
     let description: String
     let position : Position?
-    let createur: User?
+    let idcreateur: String?
     let participants: [UserDataWithNotPassword]?
     //let createdAt: Date
     //let updatedAt: Date
@@ -28,7 +43,7 @@ struct Event: Codable {
     let titre: String
     let description: String
     let position : Position?
-    let createur: User?
+    let idcreateur: String?
     let participants: [Participant]?
 }
 

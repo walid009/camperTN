@@ -79,6 +79,9 @@ class CEventsViewController: UIViewController,UITableViewDataSource,UITableViewD
                 vc.titre = event.titre
                 vc.desc = event.description
                 vc.idEvent = event._id
+                vc.latitude = event.position?.Latitude
+                vc.longitude = event.position?.Longitude
+                vc.idcreateur = event.idcreateur
             }
         }
     }
