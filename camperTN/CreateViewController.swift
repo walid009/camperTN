@@ -92,8 +92,10 @@ class CreateViewController: UIViewController, MKMapViewDelegate, CLLocationManag
             if latitude != nil && longitude != nil {
                 if imageSelected {
                     let pos = Position.init(Longitude: longitude!, Latitude: latitude!)
-                    let event = Event.init(titre: titleLB.text ?? "", description: desciptionTXTV.text ?? "", position: pos, idcreateur: currentUser._id ?? "", participants: nil)
-                    eventViewModel.createEvent(eventToCreate: event)
+                    let event = Event.init(titre: titleLB.text ?? "", description: desciptionTXTV.text ?? "", position: pos, emailcreateur: currentUser.email ?? "", participants: nil)
+                    print(imageV.image?.pngData() ?? "no imagggg")
+                    eventViewModel.createEventImage(img: imageV.image!,event: event)
+                    //eventViewModel.createEvent(eventToCreate: event)
                     let alert = UIAlertController(title: "Success", message: "Event Created", preferredStyle: .alert)
                     //2
                     let action = UIAlertAction(title: "OK", style: .default,handler: { UIAlertAction in
@@ -145,11 +147,14 @@ class CreateViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         imageV.image = imagePicker
         imageSelected = true
         
-        //let imgString = convertImageToBase64(image: imageV.image!)
-        //print(imgString)
-        
         self.dismiss(animated: true, completion: nil)
     }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true)
     }
@@ -164,4 +169,38 @@ class CreateViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         return UIImage(data: imageData)!
     }
     
+}
+
+struct ImageHeaderData{
+    static var PNG: [UInt8] = [0x89]
+    static var JPEG: [UInt8] = [0xFF]
+    static var GIF: [UInt8] = [0x47]
+    static var TIFF_01: [UInt8] = [0x49]
+    static var TIFF_02: [UInt8] = [0x4D]
+}
+
+enum ImageFormat{
+    case Unknown, PNG, JPEG, GIF, TIFF
+}
+
+
+extension NSData{
+    var imageFormat: ImageFormat{
+        var buffer = [UInt8](repeating: 0, count: 1)
+        self.getBytes(&buffer, range: NSRange(location: 0,length: 1))
+        if buffer == ImageHeaderData.PNG
+        {
+            return .PNG
+        } else if buffer == ImageHeaderData.JPEG
+        {
+            return .JPEG
+        } else if buffer == ImageHeaderData.GIF
+        {
+            return .GIF
+        } else if buffer == ImageHeaderData.TIFF_01 || buffer == ImageHeaderData.TIFF_02{
+            return .TIFF
+        } else{
+            return .Unknown
+        }
+    }
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class EventViewModel: NSObject{
     //var
@@ -39,8 +40,8 @@ class EventViewModel: NSObject{
         }
     }
     
-    func createEvent(eventToCreate: Event){
-        apiEvent!.createEvent(event: eventToCreate, completion: { error in
+    func createEventImage(img: UIImage, event: Event){
+        apiEvent?.createEventImage(image: img, event: event, completion: { error in
             print(error ?? "success")
         })
     }

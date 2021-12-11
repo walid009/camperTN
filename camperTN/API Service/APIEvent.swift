@@ -37,37 +37,77 @@ class APIEvent: NSObject{
         }.resume()*/
     }
     
-    func createEvent(event: Event, completion: @escaping(Error?) -> () ){
-        guard let url = URL(string: "http://localhost:3000/events/createWithoutImage") else { return }
-        do {
+    func createEventImage(image: UIImage, event:Event, completion: @escaping(Error?) -> () ){
+        guard let url = URL(string: "http://localhost:3000/events/create") else { return }
+        var urlRequest = URLRequest(url: url)
+        
+        // generate boundary string using a unique per-app string
+        let boundary = UUID().uuidString
+
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+
+        // Set the URLRequest to POST and to the specified URL
+        urlRequest.httpMethod = "POST"
+
+        // Set Content-Type Header to multipart/form-data, this is equivalent to submitting form data with file upload in a web browser
+        // And the boundary is also set here
+        urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+
+        var data = Data()
+
+        // Add the reqtype field and its value to the raw http request data
+        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"titre\"\r\n\r\n".data(using: .utf8)!)
+        data.append("\(event.titre)".data(using: .utf8)!)
+
+        // Add the userhash field and its value to the raw http reqyest data
+        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"description\"\r\n\r\n".data(using: .utf8)!)
+        data.append("\(event.description)".data(using: .utf8)!)
+        
+        // Add the reqtype field and its value to the raw http request data
+        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"Longitude\"\r\n\r\n".data(using: .utf8)!)
+        data.append("\(event.position!.Longitude)".data(using: .utf8)!)
+
+        // Add the userhash field and its value to the raw http reqyest data
+        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"Latitude\"\r\n\r\n".data(using: .utf8)!)
+        data.append("\(event.position!.Latitude)".data(using: .utf8)!)
+        
+        // Add the userhash field and its value to the raw http reqyest data
+        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"emailcreateur\"\r\n\r\n".data(using: .utf8)!)
+        data.append("\(event.emailcreateur)".data(using: .utf8)!)
+
+        // Add the image data to the raw http request data
+        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"image\"; filename=\"image.png\"\r\n".data(using: .utf8)!)
+        data.append("Content-Type: image/png\r\n\r\n".data(using: .utf8)!)
+        data.append(image.pngData()!)
+
+        // End the raw http request data, note that there is 2 extra dash ("-") at the end, this is to indicate the end of the data
+        // According to the HTTP 1.1 specification https://tools.ietf.org/html/rfc7230
+        data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+
+        // Send a POST request to the URL, with the data we created earlier
+        session.uploadTask(with: urlRequest, from: data, completionHandler: { responseData, response, error in
             
-            var urlRequest = URLRequest(url: url)
-            urlRequest.httpMethod = "POST"
-            urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            urlRequest.httpBody = try JSONEncoder().encode(event)
+            if(error != nil){
+                print("\(error!.localizedDescription)")
+            }
             
-            print(event)
-            print(try JSONEncoder().encode(event))
-            URLSession.shared.dataTask(with: urlRequest) { data, response, error in
-                guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,
-                      let jsonData = data else{
-                          print("failed")
-                          completion(error)
-                          return
-                      }
-                do {
-                    let messageData = try JSONDecoder().decode(EventData.self, from: jsonData)
-                    print("success => \(messageData)")
-                    completion(nil)
-                }catch{
-                    print("failed")
-                    completion(error)
-                }
-            }.resume()
-        }catch{
-            print("failed")
-            completion(error)
-        }
+            guard let responseData = responseData else {
+                print("no response data")
+                return
+            }
+            
+            if let responseString = String(data: responseData, encoding: .utf8) {
+                print(data)
+                print("uploaded to: \(responseString)")
+            }
+        }).resume()
     }
     
     func updateEvent(event: EventDataUpdate, completion: @escaping(Error?) -> () ){
@@ -142,7 +182,43 @@ class APIEvent: NSObject{
     }
     
 }
-/*struct APIRequest {
+/*
+ 
+ func createEvent(event: Event, completion: @escaping(Error?) -> () ){
+     guard let url = URL(string: "http://localhost:3000/events/createWithoutImage") else { return }
+     do {
+         
+         var urlRequest = URLRequest(url: url)
+         urlRequest.httpMethod = "POST"
+         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+         urlRequest.httpBody = try JSONEncoder().encode(event)
+         
+         print(event)
+         print(try JSONEncoder().encode(event))
+         URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+             guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,
+                   let jsonData = data else{
+                       print("failed")
+                       completion(error)
+                       return
+                   }
+             do {
+                 let messageData = try JSONDecoder().decode(EventData.self, from: jsonData)
+                 print("success => \(messageData)")
+                 completion(nil)
+             }catch{
+                 print("failed")
+                 completion(error)
+             }
+         }.resume()
+     }catch{
+         print("failed")
+         completion(error)
+     }
+ }
+ 
+ 
+ struct APIRequest {
     let url: String
     func createEvent(event: Event, completion: @escaping(Error?) -> () ){
         guard let url = URL(string: url) else { return }

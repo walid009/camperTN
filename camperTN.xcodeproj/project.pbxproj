@@ -11,6 +11,12 @@
 		D6385E5B2731EF68006C7E15 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6385E5A2731EF68006C7E15 /* EventsViewController.swift */; };
 		D64682A02731B72B000917DA /* SignUpMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646829F2731B72B000917DA /* SignUpMethodViewController.swift */; };
 		D64682A22731B73E000917DA /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64682A12731B73E000917DA /* SignUpViewController.swift */; };
+		D650940B2763AE9800B8875A /* Commentaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = D650940A2763AE9800B8875A /* Commentaire.swift */; };
+		D650940D2763AEA700B8875A /* APICommentaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = D650940C2763AEA700B8875A /* APICommentaire.swift */; };
+		D650940F2763AEB900B8875A /* CommentaireViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D650940E2763AEB900B8875A /* CommentaireViewModel.swift */; };
+		D65094112763BB7400B8875A /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65094102763BB7400B8875A /* MessageCell.swift */; };
+		D65094132763BBC400B8875A /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D65094122763BBC400B8875A /* MessageCell.xib */; };
+		D65094152763BC1D00B8875A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65094142763BC1D00B8875A /* Constants.swift */; };
 		D65C77492739294100A5057F /* CEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65C77482739294100A5057F /* CEventsViewController.swift */; };
 		D65C774B273935AA00A5057F /* DetailEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65C774A273935AA00A5057F /* DetailEventViewController.swift */; };
 		D65C774D2739415C00A5057F /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65C774C2739415C00A5057F /* FavoriteViewController.swift */; };
@@ -27,6 +33,11 @@
 		D6AFFBCA273486CD0010829C /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AFFBC9273486CD0010829C /* EventViewModel.swift */; };
 		D6E1DF3F2753934E00560C90 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E1DF3E2753934E00560C90 /* ResetPasswordViewController.swift */; };
 		D6E1DF412753CCFE00560C90 /* DetailParticipantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E1DF402753CCFE00560C90 /* DetailParticipantViewController.swift */; };
+		D6EAB1282762824B007C702F /* Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EAB1272762824B007C702F /* Share.swift */; };
+		D6EAB12A2762825B007C702F /* APIShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EAB1292762825B007C702F /* APIShare.swift */; };
+		D6EAB12C2762826A007C702F /* ShareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EAB12B2762826A007C702F /* ShareViewModel.swift */; };
+		D6EAB12E27629563007C702F /* constvariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EAB12D27629563007C702F /* constvariable.swift */; };
+		D6EAB1332762A7F7007C702F /* DetailShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EAB1322762A7F7007C702F /* DetailShareViewController.swift */; };
 		D6F2728727380DC200F9FE36 /* TabBarOrgController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F2728627380DC200F9FE36 /* TabBarOrgController.swift */; };
 		D6F883D62736D84E0038223D /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F883D52736D84E0038223D /* CreateViewController.swift */; };
 		D6FA4E56272DE65700E122E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FA4E55272DE65700E122E0 /* AppDelegate.swift */; };
@@ -44,6 +55,12 @@
 		D6385E5A2731EF68006C7E15 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		D646829F2731B72B000917DA /* SignUpMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpMethodViewController.swift; sourceTree = "<group>"; };
 		D64682A12731B73E000917DA /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		D650940A2763AE9800B8875A /* Commentaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commentaire.swift; sourceTree = "<group>"; };
+		D650940C2763AEA700B8875A /* APICommentaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommentaire.swift; sourceTree = "<group>"; };
+		D650940E2763AEB900B8875A /* CommentaireViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentaireViewModel.swift; sourceTree = "<group>"; };
+		D65094102763BB7400B8875A /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		D65094122763BBC400B8875A /* MessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		D65094142763BC1D00B8875A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D65C77482739294100A5057F /* CEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CEventsViewController.swift; sourceTree = "<group>"; };
 		D65C774A273935AA00A5057F /* DetailEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEventViewController.swift; sourceTree = "<group>"; };
 		D65C774C2739415C00A5057F /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +77,11 @@
 		D6AFFBC9273486CD0010829C /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
 		D6E1DF3E2753934E00560C90 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		D6E1DF402753CCFE00560C90 /* DetailParticipantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailParticipantViewController.swift; sourceTree = "<group>"; };
+		D6EAB1272762824B007C702F /* Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share.swift; sourceTree = "<group>"; };
+		D6EAB1292762825B007C702F /* APIShare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIShare.swift; sourceTree = "<group>"; };
+		D6EAB12B2762826A007C702F /* ShareViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewModel.swift; sourceTree = "<group>"; };
+		D6EAB12D27629563007C702F /* constvariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constvariable.swift; sourceTree = "<group>"; };
+		D6EAB1322762A7F7007C702F /* DetailShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailShareViewController.swift; sourceTree = "<group>"; };
 		D6F2728627380DC200F9FE36 /* TabBarOrgController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarOrgController.swift; sourceTree = "<group>"; };
 		D6F883D52736D84E0038223D /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 		D6FA4E52272DE65700E122E0 /* camperTN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = camperTN.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,9 +144,9 @@
 			children = (
 				D65C77482739294100A5057F /* CEventsViewController.swift */,
 				D65C774A273935AA00A5057F /* DetailEventViewController.swift */,
-				D65C774E2739416E00A5057F /* ShareViewController.swift */,
 				D65C77502739425A00A5057F /* ProfileViewController.swift */,
 				D65E1F32275CE0CA00F71E9F /* favorite */,
+				D6EAB12F27629EB1007C702F /* share */,
 			);
 			name = Campeur;
 			sourceTree = "<group>";
@@ -150,6 +172,8 @@
 			children = (
 				D6AFFBC9273486CD0010829C /* EventViewModel.swift */,
 				D66AECE9273B13E600CE713C /* UserViewModel.swift */,
+				D6EAB12B2762826A007C702F /* ShareViewModel.swift */,
+				D650940E2763AEB900B8875A /* CommentaireViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -159,6 +183,9 @@
 			children = (
 				D6AFFBC72734727C0010829C /* APIEvent.swift */,
 				D66AECEB273B13F900CE713C /* APIUser.swift */,
+				D6EAB1292762825B007C702F /* APIShare.swift */,
+				D6EAB12D27629563007C702F /* constvariable.swift */,
+				D650940C2763AEA700B8875A /* APICommentaire.swift */,
 			);
 			path = "API Service";
 			sourceTree = "<group>";
@@ -168,6 +195,8 @@
 			children = (
 				D6AFFBC527346ADB0010829C /* Event.swift */,
 				D66AECED273B144C00CE713C /* User.swift */,
+				D6EAB1272762824B007C702F /* Share.swift */,
+				D650940A2763AE9800B8875A /* Commentaire.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -179,6 +208,18 @@
 				D6FA4E57272DE65700E122E0 /* SceneDelegate.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		D6EAB12F27629EB1007C702F /* share */ = {
+			isa = PBXGroup;
+			children = (
+				D65C774E2739416E00A5057F /* ShareViewController.swift */,
+				D6EAB1322762A7F7007C702F /* DetailShareViewController.swift */,
+				D65094102763BB7400B8875A /* MessageCell.swift */,
+				D65094122763BBC400B8875A /* MessageCell.xib */,
+				D65094142763BC1D00B8875A /* Constants.swift */,
+			);
+			name = share;
 			sourceTree = "<group>";
 		};
 		D6F883D42736D7400038223D /* organisateur */ = {
@@ -289,6 +330,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D65094132763BBC400B8875A /* MessageCell.xib in Resources */,
 				D6FA4E65272DE65800E122E0 /* LaunchScreen.storyboard in Resources */,
 				D6AB0BB92748662B00D536F9 /* credentials.plist in Resources */,
 				D6FA4E62272DE65800E122E0 /* Assets.xcassets in Resources */,
@@ -346,27 +388,37 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6F883D62736D84E0038223D /* CreateViewController.swift in Sources */,
+				D65094152763BC1D00B8875A /* Constants.swift in Sources */,
 				D6E1DF412753CCFE00560C90 /* DetailParticipantViewController.swift in Sources */,
+				D650940B2763AE9800B8875A /* Commentaire.swift in Sources */,
 				D65C77492739294100A5057F /* CEventsViewController.swift in Sources */,
 				D6AFFBC82734727C0010829C /* APIEvent.swift in Sources */,
 				D6E1DF3F2753934E00560C90 /* ResetPasswordViewController.swift in Sources */,
+				D6EAB1282762824B007C702F /* Share.swift in Sources */,
+				D6EAB1332762A7F7007C702F /* DetailShareViewController.swift in Sources */,
 				D6385E5B2731EF68006C7E15 /* EventsViewController.swift in Sources */,
+				D6EAB12E27629563007C702F /* constvariable.swift in Sources */,
 				D65C774D2739415C00A5057F /* FavoriteViewController.swift in Sources */,
+				D65094112763BB7400B8875A /* MessageCell.swift in Sources */,
 				D64682A22731B73E000917DA /* SignUpViewController.swift in Sources */,
 				D65C774F2739416E00A5057F /* ShareViewController.swift in Sources */,
 				D65C77512739425A00A5057F /* ProfileViewController.swift in Sources */,
 				D6AFFBCA273486CD0010829C /* EventViewModel.swift in Sources */,
 				D65E1F36275CEE1600F71E9F /* DetailFavoriteViewController.swift in Sources */,
 				D66AECEC273B13F900CE713C /* APIUser.swift in Sources */,
+				D6EAB12A2762825B007C702F /* APIShare.swift in Sources */,
 				D6FA4E5A272DE65700E122E0 /* LoginViewController.swift in Sources */,
 				D6FA4E56272DE65700E122E0 /* AppDelegate.swift in Sources */,
 				D66AECE8273AED6E00CE713C /* UpdateEventViewController.swift in Sources */,
+				D650940F2763AEB900B8875A /* CommentaireViewModel.swift in Sources */,
 				D6FA4E58272DE65700E122E0 /* SceneDelegate.swift in Sources */,
 				D66AECEA273B13E600CE713C /* UserViewModel.swift in Sources */,
 				D6F2728727380DC200F9FE36 /* TabBarOrgController.swift in Sources */,
 				D65C774B273935AA00A5057F /* DetailEventViewController.swift in Sources */,
 				D64682A02731B72B000917DA /* SignUpMethodViewController.swift in Sources */,
 				D6AFFBC627346ADB0010829C /* Event.swift in Sources */,
+				D650940D2763AEA700B8875A /* APICommentaire.swift in Sources */,
+				D6EAB12C2762826A007C702F /* ShareViewModel.swift in Sources */,
 				D6FA4E60272DE65700E122E0 /* camperTN.xcdatamodeld in Sources */,
 				D66AECEE273B144C00CE713C /* User.swift in Sources */,
 			);
@@ -445,7 +497,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -500,7 +552,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

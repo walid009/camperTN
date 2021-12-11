@@ -11,7 +11,8 @@ import CoreData
 class FavoriteViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     var events = [EventCore]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,6 +21,7 @@ class FavoriteViewController: UIViewController,UITableViewDataSource,UITableView
     
     override func viewWillAppear(_ animated: Bool) {
         LoadData()
+        tableView.reloadData()
     }
     
     func LoadData(with request: NSFetchRequest<EventCore> = EventCore.fetchRequest()) {
@@ -45,22 +47,32 @@ class FavoriteViewController: UIViewController,UITableViewDataSource,UITableView
         
         label1.text = events[indexPath.row].titre
         imageUIV.image = UIImage(named: "tes")
+        print("======================"+events[indexPath.row].emailcreateur!)
+        print(events[indexPath.row].emailpartageur!)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(events[indexPath.row].titre!)
+        self.performSegue(withIdentifier: "showDetailFavorite", sender: indexPath)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showDetailFavorite" {
+            let indexPath = sender as! IndexPath
+            let event = events[indexPath.row]
+            if let vc = segue.destination as? DetailFavoriteViewController {
+                vc.titre = event.titre
+                vc.desc = event.desc
+                vc.idEvent = event.id
+                vc.latitude = event.latitude
+                vc.longitude = event.longitude
+                vc.emailcreateur = event.emailcreateur
+                vc.emailpartageur = event.emailpartageur
+                vc.shared = event.shared
+            }
+        }
     }
-    */
 
 }

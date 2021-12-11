@@ -64,7 +64,14 @@ class EventsViewController: UIViewController,UITableViewDataSource,UITableViewDe
         let imageView = contentView?.viewWithTag(3) as! UIImageView
         //bind
         label.text = data[indexPath.row].titre
-        imageView.image = UIImage(named: "tes")
+        let url = URL(string: "http://localhost:3000/\(data[indexPath.row].image!)")!
+        
+        // Fetch Image Data
+        if let data = try? Data(contentsOf: url) {
+            // Create Image and Update Image View
+            imageView.image = UIImage(data: data)
+        }
+        
         return cell!
     }
     
@@ -98,8 +105,8 @@ class EventsViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 vc.id = event._id
                 vc.titre = event.titre
                 vc.desc = event.description
-                vc.latitude = event.position?.Latitude
-                vc.longitude = event.position?.Longitude
+                vc.latitude = event.Latitude
+                vc.longitude = event.Longitude
             }
         }
         if segue.identifier == "showDetailParticipate"{
@@ -108,8 +115,8 @@ class EventsViewController: UIViewController,UITableViewDataSource,UITableViewDe
             if let vc = segue.destination as? DetailParticipantViewController{
                 vc.titre = event.titre
                 vc.listCamper = event.participants
-                vc.latitude = event.position?.Latitude
-                vc.longitude = event.position?.Longitude
+                vc.latitude = event.Latitude
+                vc.longitude = event.Longitude
             }
         }
     }

@@ -8,6 +8,7 @@
 import UIKit
 import MapKit
 import CoreData
+import Braintree
 
 class DetailEventViewController: UIViewController {
     var idEvent: String?
@@ -17,7 +18,8 @@ class DetailEventViewController: UIViewController {
     var exist:Bool?
     var latitude:Double?
     var longitude:Double?
-    var idcreateur: String?
+    var emailcreateur: String?
+    var braintreeClient: BTAPIClient!
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -61,11 +63,13 @@ class DetailEventViewController: UIViewController {
         
         let region = MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
         mapV.setRegion(region, animated: true)
+        
+        self.braintreeClient = BTAPIClient(authorization: "sandbox_f252zhq7_hh4cpc39zq4rgjcg")
     }
     
     @IBAction func ParticiperBtnPressed(_ sender: UIButton) {
     }
-
+    
     @IBAction func FavoriteBtnPressed(_ sender: UIButton) {
         if check() {
             let alert = UIAlertController(title: "Error", message: "Already added to you're favortie", preferredStyle: .alert)
@@ -82,7 +86,9 @@ class DetailEventViewController: UIViewController {
             object.setValue(desc!, forKey: "desc")
             object.setValue(latitude!, forKey: "latitude")
             object.setValue(longitude!, forKey: "longitude")
-            object.setValue(idcreateur!, forKey: "idcreateur")
+            object.setValue(emailcreateur!, forKey: "emailcreateur")
+            object.setValue(currentUser.email!, forKey: "emailpartageur")
+            object.setValue(false, forKey: "shared")
             saveItems()
             let alert = UIAlertController(title: "Susscess", message: "Event \(titre!) added successfully to you're favortie", preferredStyle: .alert)
             let ok = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
@@ -95,7 +101,7 @@ class DetailEventViewController: UIViewController {
         let request = NSFetchRequest<NSManagedObject>(entityName: "EventCore")
         let predicate = NSPredicate(format: "id like %@", idEvent!)
         request.predicate = predicate
-                
+        
         do{
             let result = try context.fetch(request)
             if result.count > 0 {
@@ -105,7 +111,7 @@ class DetailEventViewController: UIViewController {
             print("error fetch")
             return false
         }
-            return false
+        return false
     }
     
     func saveItems() {
@@ -123,9 +129,9 @@ class DetailEventViewController: UIViewController {
         self.navigationController?.popViewController(animated: false)
     }
     
-    
     @IBAction func participateBtnPressed(_ sender: Any) {
         callToViewModelForCheckUserParticipate()
+        
     }
     
     func callToViewModelForCheckUserParticipate(){
@@ -150,8 +156,25 @@ class DetailEventViewController: UIViewController {
                         //2
                         let cancel = UIAlertAction(title: "No", style: .cancel)
                         let action = UIAlertAction(title: "Yes", style: .default) { UIAlertAction in
-                            let user = UserDataWithNotPassword.init(_id: currentUser._id!, nom: currentUser.nom!, prenom: currentUser.prenom!, email: currentUser.email!, role: currentUser.role!, telephone: currentUser.telephone!)
-                            self.eventViewModel?.participateUserToEvent(idEvent: self.idEvent!, user: user)
+                            let payPalDriver = BTPayPalDriver(apiClient: self.braintreeClient)
+                            // Important! Choose either Vault or Checkout flow
+                            // Start the Vault flow, or...
+                            let vaultRequest = BTPayPalVaultRequest()
+                            payPalDriver.tokenizePayPalAccount(with: vaultRequest) { (tokenizedPayPalAccount, error) in
+                                // ...
+                                print("laba")
+                            }
+                            // ...start the Checkout flow
+                            let checkoutRequest = BTPayPalCheckoutRequest(amount: "1.00")
+                            payPalDriver.tokenizePayPalAccount(with: checkoutRequest) { (tokenizedPayPalAccount, error) in
+                                print("ici")
+                                if tokenizedPayPalAccount != nil {
+                                    let user = UserDataWithNotPassword.init(_id: currentUser._id!, nom: currentUser.nom!, prenom: currentUser.prenom!, email: currentUser.email!, role: currentUser.role!, telephone: currentUser.telephone!)
+                                    self.eventViewModel?.participateUserToEvent(idEvent: self.idEvent!, user: user)
+                                    print("payer avec success")
+                                }
+                            }
+                            
                         }
                         //3
                         alert.addAction(action)
@@ -166,15 +189,5 @@ class DetailEventViewController: UIViewController {
         }
         
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

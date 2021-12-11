@@ -62,7 +62,13 @@ class CEventsViewController: UIViewController,UITableViewDataSource,UITableViewD
         let imageView = contentView?.viewWithTag(3) as! UIImageView
         
         label.text = data[indexPath.row].titre
-        imageView.image = UIImage(named: "tes")
+        let url = URL(string: "http://localhost:3000/\(data[indexPath.row].image!)")!
+        
+        // Fetch Image Data
+        if let data = try? Data(contentsOf: url) {
+            // Create Image and Update Image View
+            imageView.image = UIImage(data: data)
+        }
         
         return cell!
     }
@@ -79,9 +85,9 @@ class CEventsViewController: UIViewController,UITableViewDataSource,UITableViewD
                 vc.titre = event.titre
                 vc.desc = event.description
                 vc.idEvent = event._id
-                vc.latitude = event.position?.Latitude
-                vc.longitude = event.position?.Longitude
-                vc.idcreateur = event.idcreateur
+                vc.latitude = event.Latitude
+                vc.longitude = event.Longitude
+                vc.emailcreateur = event.emailcreateur
             }
         }
     }

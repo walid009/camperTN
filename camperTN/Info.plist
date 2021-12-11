@@ -20,6 +20,16 @@
 				<string>com.ChekirWalid.camperTN</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.ChekirWalid.camperTN</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.ChekirWalid.camperTN.payments</string>
+			</array>
+		</dict>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

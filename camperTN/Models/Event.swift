@@ -8,6 +8,11 @@
 import Foundation
 import UIKit
 
+struct ImageRequest : Encodable
+{
+    let image : String
+}
+
 struct Media {
     let key: String
     let filename: String
@@ -26,9 +31,11 @@ struct EventData: Codable {
     let _id: String?
     let titre: String
     let description: String
-    let position : Position?
-    let idcreateur: String?
+    let Longitude: Double?
+    let Latitude: Double?
+    let emailcreateur: String
     let participants: [UserDataWithNotPassword]?
+    let image: String?
     //let createdAt: Date
     //let updatedAt: Date
 }
@@ -43,7 +50,7 @@ struct Event: Codable {
     let titre: String
     let description: String
     let position : Position?
-    let idcreateur: String?
+    let emailcreateur: String
     let participants: [Participant]?
 }
 
