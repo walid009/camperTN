@@ -88,6 +88,7 @@ class CEventsViewController: UIViewController,UITableViewDataSource,UITableViewD
                 vc.latitude = event.Latitude
                 vc.longitude = event.Longitude
                 vc.emailcreateur = event.emailcreateur
+                vc.phone = event.phonecreateur
             }
         }
     }

@@ -78,8 +78,25 @@ class DetailFavoriteViewController: UIViewController {
     @IBAction func shareBtnPressed(_ sender: Any) {
         let share = shareEvent.init(titre: titre!, description: desc!, Longitude: longitude!, Latitude: latitude!, emailcreateur: emailcreateur!, emailpartageur: emailpartageur!)
         shareViewModel?.createShareEvent(share: share)
+        setShare()
         shareBtn.isEnabled = false
         shareBtn.backgroundColor = UIColor.lightGray
+    }
+    
+    func setShare() {
+        let request = NSFetchRequest<NSManagedObject>(entityName: "EventCore")
+        do{
+            let result = try context.fetch(request)
+            for item in result {
+                if item.value(forKey: "id") as! String == idEvent! {
+                    item.setValue(true, forKey: "shared")
+                    saveItems()
+                    return
+                }
+            }
+        }catch{
+             print("error fetch")
+        }
     }
     
     func saveItems() {

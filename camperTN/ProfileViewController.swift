@@ -20,6 +20,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var infoUIVIew: UIView!
     @IBOutlet weak var updateBTN: UIButton!
     @IBOutlet weak var switchUI: UISwitch!
+    @IBOutlet weak var switchUIDarkLight: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,6 +119,8 @@ class ProfileViewController: UIViewController {
             phoneTxtF.borderStyle = .roundedRect
             phoneTxtF.backgroundColor = UIColor.systemGray6
             phoneTxtF.isEnabled = true
+            
+            updateBTN.isHidden = false
         }else{
             nomTxtF.borderStyle = .none
             nomTxtF.backgroundColor = UIColor.lightText
@@ -130,7 +133,24 @@ class ProfileViewController: UIViewController {
             phoneTxtF.borderStyle = .none
             phoneTxtF.backgroundColor = UIColor.lightText
             phoneTxtF.isEnabled = false
+            
+            updateBTN.isHidden = true
         }
+    }
+    @IBAction func siwtchDarkLighPressed(_ sender: Any) {
+        if switchUIDarkLight.isOn {
+            UIApplication.shared.windows.forEach { window in
+                window.overrideUserInterfaceStyle = .dark
+            }
+        }else{
+            UIApplication.shared.windows.forEach { window in
+                window.overrideUserInterfaceStyle = .light
+            }
+        }
+    }
+    
+    @IBAction func logoutBtnPressed(_ sender: Any) {
+        self.navigationController?.popViewController(animated: false)
     }
     /*
     // MARK: - Navigation

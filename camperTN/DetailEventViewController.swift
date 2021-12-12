@@ -20,9 +20,13 @@ class DetailEventViewController: UIViewController {
     var longitude:Double?
     var emailcreateur: String?
     var braintreeClient: BTAPIClient!
+    var phone: String?
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    @IBOutlet weak var viewUI1: UIView!
+    @IBOutlet weak var phoneTxtF: UITextField!
+    @IBOutlet weak var emailTxtF: UITextField!
     @IBOutlet weak var titreTxtF: UITextField!
     @IBOutlet weak var descriptionTxtF: UITextView!
     @IBOutlet weak var viewUI: UIView!
@@ -33,6 +37,20 @@ class DetailEventViewController: UIViewController {
         super.viewDidLoad()
         
         eventViewModel = EventViewModel()
+        
+        viewUI1.layer.cornerRadius = 17
+        viewUI1.layer.borderWidth = 0.1
+        viewUI1.layer.shadowColor = UIColor.lightGray.cgColor
+        viewUI1.layer.shadowOpacity = 1
+        viewUI1.layer.shadowOffset = .zero
+        viewUI1.layer.shadowRadius = 10
+        //viewUI.layer.shadowPath = UIBezierPath(rect: viewUI.bounds).cgPath
+        viewUI1.layer.shouldRasterize = true
+        viewUI1.layer.rasterizationScale = UIScreen.main.scale
+        
+        emailTxtF.text = emailcreateur!
+        phoneTxtF.text = phone!
+        
         viewUI.layer.cornerRadius = 17
         viewUI.layer.borderWidth = 0.1
         viewUI.layer.shadowColor = UIColor.lightGray.cgColor

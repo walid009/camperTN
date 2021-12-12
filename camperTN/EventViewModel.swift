@@ -40,6 +40,13 @@ class EventViewModel: NSObject{
         }
     }
     
+    func getAllEventsCreatedByOrganisteur(email: String,token: String) {
+        self.apiEvent!.getEventsCreatedBy(email: email, token: token) { eventData in
+            self.eventData = eventData
+            //print(eventData)
+        }
+    }
+    
     func createEventImage(img: UIImage, event: Event){
         apiEvent?.createEventImage(image: img, event: event, completion: { error in
             print(error ?? "success")

@@ -75,4 +75,7 @@ class FavoriteViewController: UIViewController,UITableViewDataSource,UITableView
         }
     }
 
+    @IBAction func logoutBtnPRessed(_ sender: Any) {
+        self.navigationController?.popViewController(animated: false)
+    }
 }

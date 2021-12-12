@@ -37,6 +37,25 @@ class APIEvent: NSObject{
         }.resume()*/
     }
     
+    func getEventsCreatedBy(email: String,token: String,completion : @escaping ([EventData]) -> ()){
+        guard let url = URL(string: "\(baseURL)/events/\(email)") else {
+            return
+        }
+        var request = URLRequest(url: url)
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else{
+                print("error !")
+                return
+            }
+            guard let eventData = try? JSONDecoder().decode([EventData].self, from: data) else{
+                print("no data event")
+                return
+            }
+            completion(eventData)
+        }.resume()
+    }
+    
     func createEventImage(image: UIImage, event:Event, completion: @escaping(Error?) -> () ){
         guard let url = URL(string: "http://localhost:3000/events/create") else { return }
         var urlRequest = URLRequest(url: url)
@@ -80,6 +99,11 @@ class APIEvent: NSObject{
         data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
         data.append("Content-Disposition: form-data; name=\"emailcreateur\"\r\n\r\n".data(using: .utf8)!)
         data.append("\(event.emailcreateur)".data(using: .utf8)!)
+        
+        // Add the userhash field and its value to the raw http reqyest data
+        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"phonecreateur\"\r\n\r\n".data(using: .utf8)!)
+        data.append("\(event.phonecreateur!)".data(using: .utf8)!)
 
         // Add the image data to the raw http request data
         data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)

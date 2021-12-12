@@ -104,9 +104,11 @@ class DetailShareViewController: UIViewController {
                     self.commentaireData = data
                     print(data)
                     self.tableV.reloadData()
-                    //to scroll down automaticaly when send msg or many msg display
-                    let indexPath = IndexPath(row: self.commentaireData.count - 1, section: 0)
-                    self.tableV.scrollToRow(at: indexPath, at: .top, animated: true)
+                    if self.commentaireData.count > 0 {
+                        //to scroll down automaticaly when send msg or many msg display
+                        let indexPath = IndexPath(row: self.commentaireData.count - 1, section: 0)
+                        self.tableV.scrollToRow(at: indexPath, at: .top, animated: true)
+                    }
                 }
             }
         }
@@ -136,6 +138,12 @@ class DetailShareViewController: UIViewController {
             commentaireViewModel?.createCommentaire(commentaire: commentaire)
             commentaireTXTF.text = ""
             loadCommentaireData()
+            tableV.reloadData()
+            //to scroll down automaticaly when send msg or many msg display
+            if self.commentaireData.count > 0 {
+                let indexPath = IndexPath(row: self.commentaireData.count - 1, section: 0)
+                self.tableV.scrollToRow(at: indexPath, at: .top, animated: true)
+            }
         }
     }
     @IBAction func backBtnPressed(_ sender: Any) {

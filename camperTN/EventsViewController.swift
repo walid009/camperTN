@@ -35,7 +35,7 @@ class EventsViewController: UIViewController,UITableViewDataSource,UITableViewDe
         }
         print("=======>\(token)")
         eventViewModel = EventViewModel()
-        eventViewModel?.getAllEvents(token: token)
+        eventViewModel?.getAllEventsCreatedByOrganisteur(email: currentUser.email!, token: token)
         self.eventViewModel!.bindEventViewModelToController = {
             self.updateDataSource()
         }
@@ -117,6 +117,11 @@ class EventsViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 vc.listCamper = event.participants
                 vc.latitude = event.Latitude
                 vc.longitude = event.Longitude
+                if event.participants != nil {
+                    vc.nbrParticipant = event.participants?.count
+                }else{
+                    vc.nbrParticipant = 0
+                }
             }
         }
     }

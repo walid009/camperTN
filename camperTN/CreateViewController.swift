@@ -92,7 +92,7 @@ class CreateViewController: UIViewController, MKMapViewDelegate, CLLocationManag
             if latitude != nil && longitude != nil {
                 if imageSelected {
                     let pos = Position.init(Longitude: longitude!, Latitude: latitude!)
-                    let event = Event.init(titre: titleLB.text ?? "", description: desciptionTXTV.text ?? "", position: pos, emailcreateur: currentUser.email ?? "", participants: nil)
+                    let event = Event.init(titre: titleLB.text ?? "", description: desciptionTXTV.text ?? "", position: pos, emailcreateur: currentUser.email ?? "", participants: nil, phonecreateur: currentUser.telephone!)
                     print(imageV.image?.pngData() ?? "no imagggg")
                     eventViewModel.createEventImage(img: imageV.image!,event: event)
                     //eventViewModel.createEvent(eventToCreate: event)
@@ -159,48 +159,7 @@ class CreateViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         dismiss(animated: true)
     }
     
-    func convertImageToBase64(image: UIImage) -> String{
-        let imageData = image.pngData()!
-        return imageData.base64EncodedString(options: Data.Base64EncodingOptions.lineLength64Characters)
-    }
-    
-    func convertBase64ToImage(imageString: String) -> UIImage{
-        let imageData = Data(base64Encoded: imageString,options: Data.Base64DecodingOptions.ignoreUnknownCharacters)!
-        return UIImage(data: imageData)!
-    }
-    
-}
-
-struct ImageHeaderData{
-    static var PNG: [UInt8] = [0x89]
-    static var JPEG: [UInt8] = [0xFF]
-    static var GIF: [UInt8] = [0x47]
-    static var TIFF_01: [UInt8] = [0x49]
-    static var TIFF_02: [UInt8] = [0x4D]
-}
-
-enum ImageFormat{
-    case Unknown, PNG, JPEG, GIF, TIFF
-}
-
-
-extension NSData{
-    var imageFormat: ImageFormat{
-        var buffer = [UInt8](repeating: 0, count: 1)
-        self.getBytes(&buffer, range: NSRange(location: 0,length: 1))
-        if buffer == ImageHeaderData.PNG
-        {
-            return .PNG
-        } else if buffer == ImageHeaderData.JPEG
-        {
-            return .JPEG
-        } else if buffer == ImageHeaderData.GIF
-        {
-            return .GIF
-        } else if buffer == ImageHeaderData.TIFF_01 || buffer == ImageHeaderData.TIFF_02{
-            return .TIFF
-        } else{
-            return .Unknown
-        }
+    @IBAction func logoutBtnPressed(_ sender: Any) {
+        self.navigationController?.popViewController(animated: false)
     }
 }

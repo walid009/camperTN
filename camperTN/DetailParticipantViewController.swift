@@ -13,6 +13,7 @@ class DetailParticipantViewController: UIViewController,UITableViewDataSource {
     var listCamper: [UserDataWithNotPassword]?
     var latitude:Double?
     var longitude:Double?
+    var nbrParticipant:Int?
     
     @IBOutlet weak var titleTXTF: UITextField!
     @IBOutlet weak var firstUIV: UIView!
@@ -71,14 +72,19 @@ class DetailParticipantViewController: UIViewController,UITableViewDataSource {
     @IBAction func backBtnPressed(_ sender: Any) {
         self.navigationController?.popViewController(animated: false)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    
+    @IBAction func chartBtnPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "showChart", sender: nil)
     }
-    */
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showChart"{
+            if let vc = segue.destination as? ChartViewController{
+                vc.titreEvent = titre!
+                vc.nbreParticipant = nbrParticipant!
+            }
+        }
+    }
+    
 }

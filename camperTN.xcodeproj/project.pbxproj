@@ -47,6 +47,7 @@
 		D6FA4E60272DE65700E122E0 /* camperTN.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D6FA4E5E272DE65700E122E0 /* camperTN.xcdatamodeld */; };
 		D6FA4E62272DE65800E122E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6FA4E61272DE65800E122E0 /* Assets.xcassets */; };
 		D6FA4E65272DE65800E122E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6FA4E63272DE65800E122E0 /* LaunchScreen.storyboard */; };
+		D6FD6EA227665B8B00FA19FC /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FD6EA127665B8B00FA19FC /* ChartViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +94,7 @@
 		D6FA4E61272DE65800E122E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D6FA4E64272DE65800E122E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D6FA4E66272DE65800E122E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D6FD6EA127665B8B00FA19FC /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		FCAD410FAF4043EA9792AB52 /* Pods_camperTN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_camperTN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -230,6 +232,7 @@
 				D6F2728627380DC200F9FE36 /* TabBarOrgController.swift */,
 				D66AECE7273AED6E00CE713C /* UpdateEventViewController.swift */,
 				D6E1DF402753CCFE00560C90 /* DetailParticipantViewController.swift */,
+				D6FD6EA127665B8B00FA19FC /* ChartViewController.swift */,
 			);
 			name = organisateur;
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 				D6F2728727380DC200F9FE36 /* TabBarOrgController.swift in Sources */,
 				D65C774B273935AA00A5057F /* DetailEventViewController.swift in Sources */,
 				D64682A02731B72B000917DA /* SignUpMethodViewController.swift in Sources */,
+				D6FD6EA227665B8B00FA19FC /* ChartViewController.swift in Sources */,
 				D6AFFBC627346ADB0010829C /* Event.swift in Sources */,
 				D650940D2763AEA700B8875A /* APICommentaire.swift in Sources */,
 				D6EAB12C2762826A007C702F /* ShareViewModel.swift in Sources */,

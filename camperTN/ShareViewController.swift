@@ -75,6 +75,9 @@ class ShareViewController: UIViewController ,UITableViewDataSource,UITableViewDe
         }
     }
 
+    @IBAction func logoutBtnPRessed(_ sender: Any) {
+        self.navigationController?.popViewController(animated: false)
+    }
     /*
     // MARK: - Navigation
 

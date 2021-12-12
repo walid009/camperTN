@@ -36,6 +36,7 @@ struct EventData: Codable {
     let emailcreateur: String
     let participants: [UserDataWithNotPassword]?
     let image: String?
+    let phonecreateur: String?
     //let createdAt: Date
     //let updatedAt: Date
 }
@@ -52,6 +53,7 @@ struct Event: Codable {
     let position : Position?
     let emailcreateur: String
     let participants: [Participant]?
+    let phonecreateur: String?
 }
 
 struct EventID: Codable {

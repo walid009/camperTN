@@ -15,6 +15,7 @@ class LoginViewController: UIViewController {
     var userData: UserInfoLogin?
     var exist:Bool?
     //
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var emailTxtF: UITextField!
     @IBOutlet weak var passwordTxtF: UITextField!
     @IBOutlet weak var loginBTN: UIButton!
@@ -33,6 +34,15 @@ class LoginViewController: UIViewController {
         
         userData = UserInfoLogin.init(_id: "",nom: "", prenom: "", email: "", password: "", role: "", telephone: "")
         userViewModel = UserViewModel()
+        titleLabel.text = ""
+        var charIndex = 0.0
+        let titleText = "Camper TUNIS"
+        for letter in titleText {
+            Timer.scheduledTimer(withTimeInterval: 0.1 * charIndex, repeats: false) { (timer) in
+                self.titleLabel.text?.append(letter)
+            }
+            charIndex += 1
+        }
         // Do any additional setup after loading the view.
     }
     //IBAction
