@@ -23,6 +23,8 @@ class CreateViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     @IBOutlet weak var viewUI: UIView!
     @IBOutlet weak var mapV: MKMapView!
     @IBOutlet weak var imageV: UIImageView!
+    @IBOutlet weak var priceTF: UITextField!
+    @IBOutlet weak var dateEventDP: UIDatePicker!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,6 +52,8 @@ class CreateViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         let region = MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
         mapV.setRegion(region, animated: true)*/
         mapV.delegate = self
+        dateEventDP.minimumDate = Date()
+        desciptionTXTV.text = "description : "
     }
     
     let annotation = MKPointAnnotation()
@@ -80,7 +84,7 @@ class CreateViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     }*/
     
     @IBAction func AddEventBtnPressed(_ sender: Any) {
-        if titleLB.text == "" || desciptionTXTV.text == "" {
+        if titleLB.text == "" || desciptionTXTV.text == "" || priceTF.text == ""  {
             let alert = UIAlertController(title: "Error", message: "Complete All Field !", preferredStyle: .alert)
             //2
             let action = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -91,22 +95,43 @@ class CreateViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         }else{
             if latitude != nil && longitude != nil {
                 if imageSelected {
-                    let pos = Position.init(Longitude: longitude!, Latitude: latitude!)
-                    let event = Event.init(titre: titleLB.text ?? "", description: desciptionTXTV.text ?? "", position: pos, emailcreateur: currentUser.email ?? "", participants: nil, phonecreateur: currentUser.telephone!)
-                    print(imageV.image?.pngData() ?? "no imagggg")
-                    eventViewModel.createEventImage(img: imageV.image!,event: event)
-                    //eventViewModel.createEvent(eventToCreate: event)
-                    let alert = UIAlertController(title: "Success", message: "Event Created", preferredStyle: .alert)
-                    //2
-                    let action = UIAlertAction(title: "OK", style: .default,handler: { UIAlertAction in
-                        self.desciptionTXTV.text = ""
-                        self.titleLB.text = ""
-                        self.imageV.isHidden = true
-                    })
-                    //3
-                    alert.addAction(action)
-                    //4
-                    self.present(alert, animated: false, completion: nil)
+                    if(Int(priceTF.text!) != nil && Int(priceTF.text!) != 0){
+                        if(currentUser.approved!){
+                            let pos = Position.init(Longitude: longitude!, Latitude: latitude!)
+                            let event = Event.init(titre: titleLB.text ?? "", description: desciptionTXTV.text ?? "", position: pos, emailcreateur: currentUser.email ?? "", participants: nil, phonecreateur: currentUser.telephone!, date: dateEventDP.date, price: priceTF.text)
+                            print(imageV.image?.pngData() ?? "no imagggg")
+                            eventViewModel.createEventImage(img: imageV.image!,event: event)
+                            //eventViewModel.createEvent(eventToCreate: event)
+                            let alert = UIAlertController(title: "Success", message: "Event Created", preferredStyle: .alert)
+                            //2
+                            let action = UIAlertAction(title: "OK", style: .default,handler: { UIAlertAction in
+                                self.desciptionTXTV.text = "description : "
+                                self.titleLB.text = ""
+                                self.imageV.isHidden = true
+                                self.priceTF.text = ""
+                            })
+                            //3
+                            alert.addAction(action)
+                            //4
+                            self.present(alert, animated: false, completion: nil)
+                        }else{
+                            let alert = UIAlertController(title: "Error", message: "You are Not yet approved !", preferredStyle: .alert)
+                            //2
+                            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                            //3
+                            alert.addAction(action)
+                            //4
+                            self.present(alert, animated: false, completion: nil)
+                        }
+                    }else{
+                        let alert = UIAlertController(title: "Error", message: "price must be a number greater than 0", preferredStyle: .alert)
+                        //2
+                        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        //3
+                        alert.addAction(action)
+                        //4
+                        self.present(alert, animated: false, completion: nil)
+                    }
                 }else{
                     let alert = UIAlertController(title: "Error", message: "You need to upload an image !", preferredStyle: .alert)
                     //2
@@ -158,8 +183,16 @@ class CreateViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true)
     }
-    
+    let defaults = UserDefaults.standard
     @IBAction func logoutBtnPressed(_ sender: Any) {
+        defaults.setValue("", forKey: "email")
+        defaults.removeObject(forKey: "email")
+        print("before")
+        // Do any additional setup after loading the view.
+        
+        print("auto login")
+        self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.popViewController(animated: false)
     }
+    
 }

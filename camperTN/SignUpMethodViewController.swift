@@ -59,7 +59,7 @@ class SignUpMethodViewController: UIViewController {
         }else{
             if password == passwordConfirmation {
                 if phone!.count == 8 {
-                    let user = UserInfo.init(nom: nom!, prenom: prenom!, email: email!, password: password!, role: selectedRole!, telephone: phone!)
+                    let user = UserInfo.init(nom: nom!, prenom: prenom!, email: email!, password: password!, role: selectedRole!, telephone: phone!, approved: false)
                     userViewModel?.signUp(user: user)
                     self.navigationController?.popToRootViewController(animated: false)
                 }else{

@@ -13,6 +13,7 @@ class ProfileViewController: UIViewController {
     let userViewModel = UserViewModel()
     var userData: UserInfoLogin?
     
+    @IBOutlet weak var orgVerifiedBarBtn: UIBarButtonItem!
     @IBOutlet weak var roleLb: UILabel!
     @IBOutlet weak var prenomTxtF: UITextField!
     @IBOutlet weak var nomTxtF: UITextField!
@@ -38,6 +39,13 @@ class ProfileViewController: UIViewController {
         updateBTN.layer.borderWidth = 1
         updateBTN.layer.borderColor = UIColor.black.cgColor
         
+        if(currentUser.role == "Organisateur"){
+            if(currentUser.approved!){
+                orgVerifiedBarBtn.tintColor = UIColor.systemGreen
+            }else{
+                orgVerifiedBarBtn.tintColor = UIColor.gray
+            }
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -83,7 +91,7 @@ class ProfileViewController: UIViewController {
                 guard let token = defaults.string(forKey: "jsonwebtoken") else{
                     return
                 }
-                let userProfile = UserProfiel.init(nom: nomTxtF.text!, prenom: prenomTxtF.text!, telephone: phoneTxtF.text!)
+                let userProfile = UserProfiel.init(nom: nomTxtF.text!, prenom: prenomTxtF.text!, telephone: phoneTxtF.text!, approved: currentUser.approved!)
                 userViewModel.updateProfile(token: token, id: currentUser._id!, user: userProfile)
                 //1
                 let alert = UIAlertController(title: "Message", message: "Updated Successfully !", preferredStyle: .alert)
@@ -150,6 +158,13 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func logoutBtnPressed(_ sender: Any) {
+        defaults.setValue("", forKey: "email")
+        defaults.removeObject(forKey: "email")
+        print("before")
+        // Do any additional setup after loading the view.
+        
+        print("auto login")
+        self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.popViewController(animated: false)
     }
     /*

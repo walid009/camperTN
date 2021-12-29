@@ -10,6 +10,8 @@ import GoogleSignIn
 
 class LoginViewController: UIViewController {
     let signInConfig = GIDConfiguration.init(clientID: "60316353411-f1onecmje817un4mn258qij78b0d6hh9.apps.googleusercontent.com")
+    
+    let defaults = UserDefaults.standard
     //var
     var userViewModel: UserViewModel?
     var userData: UserInfoLogin?
@@ -32,7 +34,7 @@ class LoginViewController: UIViewController {
         loginBTN.layer.borderWidth = 1
         loginBTN.layer.borderColor = UIColor.black.cgColor
         
-        userData = UserInfoLogin.init(_id: "",nom: "", prenom: "", email: "", password: "", role: "", telephone: "")
+        userData = UserInfoLogin.init(_id: "",nom: "", prenom: "", email: "", password: "", role: "", telephone: "", approved: false)
         userViewModel = UserViewModel()
         titleLabel.text = ""
         var charIndex = 0.0
@@ -43,7 +45,20 @@ class LoginViewController: UIViewController {
             }
             charIndex += 1
         }
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        print("before")
         // Do any additional setup after loading the view.
+        guard let email = defaults.string(forKey: "email") else{
+            return
+        }
+        print("auto login")
+        print(email)
+        if(email != ""){
+            self.userViewModel?.loginGmail(email: email)
+            self.callToViewModelForCheckEmailAutoLogin(email: email)
+        }
     }
     //IBAction
     @IBAction func SignInBtnPressed(_ sender: UIButton) {
@@ -72,11 +87,15 @@ class LoginViewController: UIViewController {
                         currentUser.nom = self.userData?.nom
                         currentUser.prenom = self.userData?.prenom
                         currentUser.telephone = self.userData?.telephone
+                        currentUser.approved = self.userData?.approved
                         if self.userData?.role == "Organisateur" {
                             self.performSegue(withIdentifier: "ShowViewOrganisateurEvents", sender: nil)
                         }
-                        if self.userData?.role == "campeur"{
+                        if self.userData?.role == "Campeur"{
                             self.performSegue(withIdentifier: "ShowViewCampeurEvents", sender: nil)
+                        }
+                        if self.userData?.role == "admin"{
+                            self.performSegue(withIdentifier: "ShowViewAdminEvents", sender: nil)
                         }
                     }
                 }
@@ -140,6 +159,7 @@ class LoginViewController: UIViewController {
         GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) { user, error in
             guard error == nil else { return }
             // If sign in succeeded, display the app's main content View.
+            self.userViewModel?.loginGmail(email: user?.profile?.email ?? "")
             self.callToViewModelForCheckEmail(profile: (user?.profile)!)
             
             //print(user?.profile?.email ?? "no email")
@@ -169,11 +189,12 @@ class LoginViewController: UIViewController {
                                     currentUser.role = self.userData?.role
                                     currentUser.nom = self.userData?.nom
                                     currentUser.prenom = self.userData?.prenom
-                                    currentUser.telephone = self.userData?.telephone
+                                    currentUser.telephone = self.userData?.telephone                                    
+                                    currentUser.approved = self.userData?.approved
                                     if self.userData?.role == "Organisateur" {
                                         self.performSegue(withIdentifier: "ShowViewOrganisateurEvents", sender: nil)
                                     }
-                                    if self.userData?.role == "campeur"{
+                                    if self.userData?.role == "Campeur"{
                                         self.performSegue(withIdentifier: "ShowViewCampeurEvents", sender: nil)
                                     }
                                 }
@@ -181,6 +202,47 @@ class LoginViewController: UIViewController {
                         }
                     }else{
                         self.performSegue(withIdentifier: "showCompleteInformation", sender: profile)
+                    }
+                }
+            }
+        }
+    }
+    
+    func callToViewModelForCheckEmailAutoLogin(email: String){
+        userViewModel?.checkEmail(email: email )
+        self.userViewModel?.bindUserViewModelToController = {
+            DispatchQueue.main.async {
+                self.exist = self.userViewModel?.emailExist.exist
+                print(self.exist!)
+                if self.exist != nil {
+                    if self.exist! {
+                        self.userViewModel?.FindUserByEmailWithoutAuthenticate(email: email)
+                        self.userViewModel?.bindUserViewModelToController = {
+                            DispatchQueue.main.async {
+                                self.userData = self.userViewModel?.userDataLogin
+                                
+                                print(self.userData ?? "empty")
+                                if self.userData != nil{
+                                    currentUser._id = self.userData?._id
+                                    currentUser.email = self.userData?.email
+                                    currentUser.password = ""
+                                    currentUser.role = self.userData?.role
+                                    currentUser.nom = self.userData?.nom
+                                    currentUser.prenom = self.userData?.prenom
+                                    currentUser.telephone = self.userData?.telephone
+                                    currentUser.approved = self.userData?.approved
+                                    if self.userData?.role == "Organisateur" {
+                                        self.performSegue(withIdentifier: "ShowViewOrganisateurEvents", sender: nil)
+                                    }
+                                    if self.userData?.role == "Campeur"{
+                                        self.performSegue(withIdentifier: "ShowViewCampeurEvents", sender: nil)
+                                    }
+                                    if self.userData?.role == "admin"{
+                                        self.performSegue(withIdentifier: "ShowViewAdminEvents", sender: nil)
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

@@ -105,6 +105,16 @@ class APIEvent: NSObject{
         data.append("Content-Disposition: form-data; name=\"phonecreateur\"\r\n\r\n".data(using: .utf8)!)
         data.append("\(event.phonecreateur!)".data(using: .utf8)!)
 
+        // Add the userhash field and its value to the raw http reqyest data
+        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"date\"\r\n\r\n".data(using: .utf8)!)
+        data.append("\(event.date!)".data(using: .utf8)!)
+        
+        // Add the userhash field and its value to the raw http reqyest data
+        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"price\"\r\n\r\n".data(using: .utf8)!)
+        data.append("\(event.price!)".data(using: .utf8)!)
+        
         // Add the image data to the raw http request data
         data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
         data.append("Content-Disposition: form-data; name=\"image\"; filename=\"image.png\"\r\n".data(using: .utf8)!)
@@ -178,6 +188,23 @@ class APIEvent: NSObject{
                 return
             }
             guard let emailExist = try? JSONDecoder().decode(EmailExist.self, from: data) else{
+                print("no data event")
+                return
+            }
+            completion(emailExist)
+        }.resume()
+    }
+    
+    func UsersParticipateTothisEvent(id: String, completion : @escaping (checkUsersInEventForDelete) -> ()){
+        guard let url = URL(string: "\(baseURL)/events/UsersParticipateTothisEvent/\(id)") else {
+            return
+        }
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data, error == nil else{
+                print("error !")
+                return
+            }
+            guard let emailExist = try? JSONDecoder().decode(checkUsersInEventForDelete.self, from: data) else{
                 print("no data event")
                 return
             }

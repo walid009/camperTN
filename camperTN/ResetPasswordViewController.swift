@@ -26,6 +26,19 @@ class ResetPasswordViewController: UIViewController {
     var exist:Bool?
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        sendBTN.layer.cornerRadius = 25
+        sendBTN.layer.borderWidth = 1
+        sendBTN.layer.borderColor = UIColor.black.cgColor
+        
+        resetBTN.layer.cornerRadius = 25
+        resetBTN.layer.borderWidth = 1
+        resetBTN.layer.borderColor = UIColor.black.cgColor
+        
+        cancelBTN.layer.cornerRadius = 25
+        cancelBTN.layer.borderWidth = 1
+        cancelBTN.layer.borderColor = UIColor.black.cgColor
+        
         emailTXTF.text = ""
         pwdTXTF.text = ""
         pwdConfirmTXTF.text = ""

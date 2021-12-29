@@ -21,6 +21,9 @@ class DetailEventViewController: UIViewController {
     var emailcreateur: String?
     var braintreeClient: BTAPIClient!
     var phone: String?
+    var price: String?
+    var dateValue: String?
+    var image:String?
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -33,8 +36,17 @@ class DetailEventViewController: UIViewController {
     @IBOutlet weak var participateBTN: UIButton!
     @IBOutlet weak var favoriteBTN: UIButton!
     @IBOutlet weak var mapV: MKMapView!
+    @IBOutlet weak var priceLB: UILabel!
+    @IBOutlet weak var dateDP: UIDatePicker!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        priceLB.text = "Price : \(price!).0 DT"
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        let date = dateFormatter.date(from: dateValue!)
+        dateDP.date = date ?? Date()
         
         eventViewModel = EventViewModel()
         
@@ -107,6 +119,8 @@ class DetailEventViewController: UIViewController {
             object.setValue(emailcreateur!, forKey: "emailcreateur")
             object.setValue(currentUser.email!, forKey: "emailpartageur")
             object.setValue(false, forKey: "shared")
+            object.setValue(image!, forKey: "image")
+            object.setValue(dateValue!, forKey: "date")
             saveItems()
             let alert = UIAlertController(title: "Susscess", message: "Event \(titre!) added successfully to you're favortie", preferredStyle: .alert)
             let ok = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
@@ -183,11 +197,11 @@ class DetailEventViewController: UIViewController {
                                 print("laba")
                             }
                             // ...start the Checkout flow
-                            let checkoutRequest = BTPayPalCheckoutRequest(amount: "1.00")
+                            let checkoutRequest = BTPayPalCheckoutRequest(amount: "\(self.price!).00")
                             payPalDriver.tokenizePayPalAccount(with: checkoutRequest) { (tokenizedPayPalAccount, error) in
                                 print("ici")
                                 if tokenizedPayPalAccount != nil {
-                                    let user = UserDataWithNotPassword.init(_id: currentUser._id!, nom: currentUser.nom!, prenom: currentUser.prenom!, email: currentUser.email!, role: currentUser.role!, telephone: currentUser.telephone!)
+                                    let user = UserDataWithNotPassword.init(_id: currentUser._id!, nom: currentUser.nom!, prenom: currentUser.prenom!, email: currentUser.email!, role: currentUser.role!, telephone: currentUser.telephone!, approved: false)
                                     self.eventViewModel?.participateUserToEvent(idEvent: self.idEvent!, user: user)
                                     print("payer avec success")
                                 }

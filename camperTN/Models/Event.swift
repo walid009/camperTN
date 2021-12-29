@@ -27,6 +27,10 @@ struct Media {
     }
 }
 
+struct checkUsersInEventForDelete: Codable{
+    let usersExist: Bool
+}
+
 struct EventData: Codable {
     let _id: String?
     let titre: String
@@ -37,6 +41,8 @@ struct EventData: Codable {
     let participants: [UserDataWithNotPassword]?
     let image: String?
     let phonecreateur: String?
+    let price: String?
+    let date: String?
     //let createdAt: Date
     //let updatedAt: Date
 }
@@ -54,6 +60,8 @@ struct Event: Codable {
     let emailcreateur: String
     let participants: [Participant]?
     let phonecreateur: String?
+    let date: Date?
+    let price: String?
 }
 
 struct EventID: Codable {
@@ -66,15 +74,7 @@ struct Position: Codable{
 }
 
 struct Participant: Codable {
-    let campeur: User
+    let campeur: UserDataWithNotPassword
 }
 
-struct User: Codable {
-    let _id: String
-    let nom: String
-    let prenom: String
-    let email: String
-    let password: String
-    let telephone: String
-    let role: String
-}
+

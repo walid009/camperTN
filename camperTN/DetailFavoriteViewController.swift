@@ -21,6 +21,8 @@ class DetailFavoriteViewController: UIViewController {
     var emailpartageur: String?
     var shared:Bool?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var dateValue:String?
+    var image:String?
     
     @IBOutlet weak var mapV: MKMapView!
     @IBOutlet weak var titreTxtF: UITextField!
@@ -28,9 +30,16 @@ class DetailFavoriteViewController: UIViewController {
     @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet weak var RemoveBtn: UIButton!
     @IBOutlet weak var viewUIV: UIView!
+    @IBOutlet weak var dateDP: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        let date = dateFormatter.date(from: dateValue!)
+        dateDP.date = date ?? Date()
+        
         shareViewModel = ShareViewModel()
         
         if shared! == false {
@@ -76,7 +85,7 @@ class DetailFavoriteViewController: UIViewController {
     
     
     @IBAction func shareBtnPressed(_ sender: Any) {
-        let share = shareEvent.init(titre: titre!, description: desc!, Longitude: longitude!, Latitude: latitude!, emailcreateur: emailcreateur!, emailpartageur: emailpartageur!)
+        let share = shareEvent.init(titre: titre!, description: desc!, date: dateValue!, Longitude: longitude!, Latitude: latitude!, emailcreateur: emailcreateur!, emailpartageur: emailpartageur!, image: image!)
         shareViewModel?.createShareEvent(share: share)
         setShare()
         shareBtn.isEnabled = false
@@ -84,19 +93,29 @@ class DetailFavoriteViewController: UIViewController {
     }
     
     func setShare() {
-        let request = NSFetchRequest<NSManagedObject>(entityName: "EventCore")
-        do{
-            let result = try context.fetch(request)
-            for item in result {
-                if item.value(forKey: "id") as! String == idEvent! {
-                    item.setValue(true, forKey: "shared")
-                    saveItems()
-                    return
+        let alert = UIAlertController(title: "Share", message: "Are you sure to share Event", preferredStyle: .alert)
+        //2
+        let cancel = UIAlertAction(title: "No", style: .default)
+        let action = UIAlertAction(title: "Yes", style: .cancel) { UIAlertAction in
+            let request = NSFetchRequest<NSManagedObject>(entityName: "EventCore")
+            do{
+                let result = try self.context.fetch(request)
+                for item in result {
+                    if item.value(forKey: "id") as! String == self.idEvent! {
+                        item.setValue(true, forKey: "shared")
+                        self.saveItems()
+                        return
+                    }
                 }
+            }catch{
+                print("error fetch")
             }
-        }catch{
-             print("error fetch")
         }
+        //3
+        alert.addAction(cancel)
+        alert.addAction(action)
+        //4
+        self.present(alert, animated: true, completion: nil)
     }
     
     func saveItems() {
@@ -111,29 +130,40 @@ class DetailFavoriteViewController: UIViewController {
     }
     
     @IBAction func RemoveBtnPressed(_ sender: Any) {
-        let request = NSFetchRequest<NSManagedObject>(entityName: "EventCore")
-        let predicate = NSPredicate(format: "id like %@", idEvent!)
-        request.predicate = predicate
-        
-        var movieExist: NSManagedObject?
-        do{
-            let result = try context.fetch(request)
-            if result.count > 0{
-                movieExist = result[0]
-            }
-        }catch{
-            print("error fetch")
-        }
-        
-        context.delete(movieExist!)///
-        if context.hasChanges {
+        let alert = UIAlertController(title: "Delete", message: "Are you sure to Remove this Event", preferredStyle: .alert)
+        //2
+        let cancel = UIAlertAction(title: "No", style: .default)
+        let action = UIAlertAction(title: "Yes", style: .destructive) { UIAlertAction in
+            let request = NSFetchRequest<NSManagedObject>(entityName: "EventCore")
+            let predicate = NSPredicate(format: "id like %@", self.idEvent!)
+            request.predicate = predicate
+            
+            var movieExist: NSManagedObject?
             do{
-                try context.save()
+                let result = try self.context.fetch(request)
+                if result.count > 0{
+                    movieExist = result[0]
+                }
             }catch{
-                print("error save")
+                print("error fetch")
             }
+            
+            self.context.delete(movieExist!)///
+            if self.context.hasChanges {
+                do{
+                    try self.context.save()
+                }catch{
+                    print("error save")
+                }
+            }
+            self.navigationController?.popViewController(animated: false)
         }
-        self.navigationController?.popViewController(animated: false)
+        //3
+        alert.addAction(cancel)
+        alert.addAction(action)
+        //4
+        self.present(alert, animated: true, completion: nil)
+        
     }
     @IBAction func backBtnPressed(_ sender: Any) {
         self.navigationController?.popViewController(animated: false)

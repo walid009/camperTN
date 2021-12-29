@@ -11,6 +11,8 @@
 		D6385E5B2731EF68006C7E15 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6385E5A2731EF68006C7E15 /* EventsViewController.swift */; };
 		D64682A02731B72B000917DA /* SignUpMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646829F2731B72B000917DA /* SignUpMethodViewController.swift */; };
 		D64682A22731B73E000917DA /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64682A12731B73E000917DA /* SignUpViewController.swift */; };
+		D647F541277CA26200F9EC14 /* ListOrganisateurViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D647F540277CA26200F9EC14 /* ListOrganisateurViewController.swift */; };
+		D647F543277CAEF300F9EC14 /* detailOrganisateurViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D647F542277CAEF300F9EC14 /* detailOrganisateurViewController.swift */; };
 		D650940B2763AE9800B8875A /* Commentaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = D650940A2763AE9800B8875A /* Commentaire.swift */; };
 		D650940D2763AEA700B8875A /* APICommentaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = D650940C2763AEA700B8875A /* APICommentaire.swift */; };
 		D650940F2763AEB900B8875A /* CommentaireViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D650940E2763AEB900B8875A /* CommentaireViewModel.swift */; };
@@ -56,6 +58,8 @@
 		D6385E5A2731EF68006C7E15 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		D646829F2731B72B000917DA /* SignUpMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpMethodViewController.swift; sourceTree = "<group>"; };
 		D64682A12731B73E000917DA /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		D647F540277CA26200F9EC14 /* ListOrganisateurViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOrganisateurViewController.swift; sourceTree = "<group>"; };
+		D647F542277CAEF300F9EC14 /* detailOrganisateurViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailOrganisateurViewController.swift; sourceTree = "<group>"; };
 		D650940A2763AE9800B8875A /* Commentaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commentaire.swift; sourceTree = "<group>"; };
 		D650940C2763AEA700B8875A /* APICommentaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommentaire.swift; sourceTree = "<group>"; };
 		D650940E2763AEB900B8875A /* CommentaireViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentaireViewModel.swift; sourceTree = "<group>"; };
@@ -156,6 +160,8 @@
 		D65C77472739283A00A5057F /* Admin */ = {
 			isa = PBXGroup;
 			children = (
+				D647F540277CA26200F9EC14 /* ListOrganisateurViewController.swift */,
+				D647F542277CAEF300F9EC14 /* detailOrganisateurViewController.swift */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -400,6 +406,7 @@
 				D6EAB1282762824B007C702F /* Share.swift in Sources */,
 				D6EAB1332762A7F7007C702F /* DetailShareViewController.swift in Sources */,
 				D6385E5B2731EF68006C7E15 /* EventsViewController.swift in Sources */,
+				D647F541277CA26200F9EC14 /* ListOrganisateurViewController.swift in Sources */,
 				D6EAB12E27629563007C702F /* constvariable.swift in Sources */,
 				D65C774D2739415C00A5057F /* FavoriteViewController.swift in Sources */,
 				D65094112763BB7400B8875A /* MessageCell.swift in Sources */,
@@ -425,6 +432,7 @@
 				D6EAB12C2762826A007C702F /* ShareViewModel.swift in Sources */,
 				D6FA4E60272DE65700E122E0 /* camperTN.xcdatamodeld in Sources */,
 				D66AECEE273B144C00CE713C /* User.swift in Sources */,
+				D647F543277CAEF300F9EC14 /* detailOrganisateurViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

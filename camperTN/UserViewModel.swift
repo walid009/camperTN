@@ -35,6 +35,12 @@ class UserViewModel: NSObject{
         }
     }
     
+    private(set) var orgUsersData : [UserInfoLogin]! {
+        didSet {
+            self.bindUserViewModelToController()
+        }
+    }
+    
     var  bindUserViewModelToController : (() -> ()) = {
     }
     
@@ -42,6 +48,12 @@ class UserViewModel: NSObject{
         super.init()
         self.apiUser = APIUser()
         //getAllEvents()
+    }
+    
+    func getAllOrganisateurUsers(token: String) {
+        self.apiUser?.getAllOrganisateurUser(token: token, completion: { orgUsersData in
+            self.orgUsersData = orgUsersData
+        })
     }
     
     func FindUserByEmail(token: String, email: String){
@@ -58,6 +70,7 @@ class UserViewModel: NSObject{
     
     func login(email: String,password: String){
         let defaults = UserDefaults.standard
+        defaults.setValue(email, forKey: "email")
         apiUser?.login(email: email, password: password) { result in
             switch result{
             case .success(let token):
@@ -80,6 +93,18 @@ class UserViewModel: NSObject{
     func signUp(user: UserInfo){
         self.apiUser?.createUser(user: user, completion: { err in
             print(err ?? "ici")
+        })
+    }
+    
+    
+    func ApproveOrganisateur(token: String, id: String){
+        self.apiUser?.ApprovedUser(token: token, id: id, completion: { err in
+            print(err ?? "")
+        })
+    }
+    func DisapproveOrganisateur(token: String, id: String){
+        self.apiUser?.DisapprovedUser(token: token, id: id, completion: { err in
+            print(err ?? "")
         })
     }
     
@@ -111,6 +136,21 @@ class UserViewModel: NSObject{
         self.apiUser?.updateSendModifiedPassword(email: email, password: password, completion: { error in
             print(error ?? "")
         })
+    }
+    
+    func loginGmail(email: String){
+        let defaults = UserDefaults.standard // stockage zrila mch kima core data
+        defaults.setValue(email, forKey: "email")
+        apiUser?.loginGmail(email: email) { result in
+            switch result{
+            case .success(let token):
+                defaults.setValue(token, forKey: "jsonwebtoken")
+                defaults.synchronize()
+                print("token for my gmail: \(token)")
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
     /*func getAllEvents() {

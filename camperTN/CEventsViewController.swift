@@ -60,6 +60,14 @@ class CEventsViewController: UIViewController,UITableViewDataSource,UITableViewD
         
         let label = contentView?.viewWithTag(1) as! UILabel
         let imageView = contentView?.viewWithTag(3) as! UIImageView
+        let dateValue = contentView?.viewWithTag(2) as! UIDatePicker
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        let date = dateFormatter.date(from: data[indexPath.row].date!)
+        dateValue.date = date ?? Date()
+        
         
         label.text = data[indexPath.row].titre
         let url = URL(string: "http://localhost:3000/\(data[indexPath.row].image!)")!
@@ -89,12 +97,21 @@ class CEventsViewController: UIViewController,UITableViewDataSource,UITableViewD
                 vc.longitude = event.Longitude
                 vc.emailcreateur = event.emailcreateur
                 vc.phone = event.phonecreateur
+                vc.price = event.price
+                vc.dateValue = event.date!
+                vc.image = event.image
             }
         }
     }
     
     //MARK: -IBAction
     @IBAction func LogoutBtnPressed(_ sender: UIBarButtonItem) {
+        defaults.setValue("", forKey: "email")
+        defaults.removeObject(forKey: "email")
+        print("before")
+        // Do any additional setup after loading the view.
+        
+        print("auto login")
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.popViewController(animated: false)
     }

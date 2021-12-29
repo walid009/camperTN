@@ -16,15 +16,23 @@ class UpdateEventViewController: UIViewController {
     var eventViewModel: EventViewModel?
     var latitude:Double?
     var longitude:Double?
+    var dateValue:String?
     //MARK: -IBOutlet
     @IBOutlet weak var titreLB: UITextField!
     @IBOutlet weak var descTxt: UITextView!
     @IBOutlet weak var viewUI: UIView!
     @IBOutlet weak var updateBTN: UIButton!
     @IBOutlet weak var mapV: MKMapView!
+    @IBOutlet weak var dateDP: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        let date = dateFormatter.date(from: dateValue!)
+        dateDP.date = date ?? Date()
         
         viewUI.layer.cornerRadius = 17
         viewUI.layer.borderWidth = 0.1

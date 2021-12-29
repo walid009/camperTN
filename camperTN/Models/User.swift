@@ -15,6 +15,7 @@ class currentUser{
     static var nom: String?
     static var prenom: String?
     static var telephone: String?
+    static var approved:Bool?
 }
 
 struct EmailExist: Codable{
@@ -32,6 +33,10 @@ struct UserDataWithNotPassword: Codable {
     let email: String
     let role: String
     let telephone: String
+    let approved:Bool
+}
+struct LoginRequestBodyGmail: Codable{
+    let email:String?
 }
 
 struct UserInfoLogin: Codable {
@@ -42,11 +47,13 @@ struct UserInfoLogin: Codable {
     let password : String
     let role: String
     let telephone: String
+    let approved:Bool
 }
 struct UserProfiel: Codable {
     let nom: String
     let prenom: String
     let telephone: String
+    let approved:Bool
 }
 
 struct UserInfo: Codable {
@@ -56,6 +63,7 @@ struct UserInfo: Codable {
     let password : String
     let role: String
     let telephone: String
+    let approved:Bool
 }
 
 struct LoginRequestBody: Codable{

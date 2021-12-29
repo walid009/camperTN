@@ -43,10 +43,23 @@ class FavoriteViewController: UIViewController,UITableViewDataSource,UITableView
         
         let imageUIV = context.viewWithTag(1) as! UIImageView
         let label1 = context.viewWithTag(2) as! UILabel
+        let dateValue = context.viewWithTag(3) as! UIDatePicker
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        let date = dateFormatter.date(from: events[indexPath.row].date!)
+        dateValue.date = date ?? Date()
         //let label2 = context.viewWithTag(3) as! UILabel
         
         label1.text = events[indexPath.row].titre
-        imageUIV.image = UIImage(named: "tes")
+        let url = URL(string: "http://localhost:3000/\(events[indexPath.row].image!)")!
+        
+        // Fetch Image Data
+        if let data = try? Data(contentsOf: url) {
+            // Create Image and Update Image View
+            imageUIV.image = UIImage(data: data)
+        }
         print("======================"+events[indexPath.row].emailcreateur!)
         print(events[indexPath.row].emailpartageur!)
         
@@ -71,11 +84,20 @@ class FavoriteViewController: UIViewController,UITableViewDataSource,UITableView
                 vc.emailcreateur = event.emailcreateur
                 vc.emailpartageur = event.emailpartageur
                 vc.shared = event.shared
+                vc.dateValue = event.date
+                vc.image = event.image
             }
         }
     }
-
+    let defaults = UserDefaults.standard
     @IBAction func logoutBtnPRessed(_ sender: Any) {
+        defaults.setValue("", forKey: "email")
+        defaults.removeObject(forKey: "email")
+        print("before")
+        // Do any additional setup after loading the view.
+        
+        print("auto login")
+        self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.popViewController(animated: false)
     }
 }

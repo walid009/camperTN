@@ -21,21 +21,23 @@ struct shareEventData: Codable{
     let _id:String?
     let titre:String?
     let description: String?
-    //let date: Date?
+    let date: String?
     let Longitude: Double?
     let Latitude: Double?
     let emailcreateur: String?
     let emailpartageur: String?
+    let image:String?
 }
 
 struct shareEvent: Codable{
     let titre:String?
     let description: String?
-    //let date: Date?
+    let date: String?
     let Longitude: Double?
     let Latitude: Double?
     let emailcreateur: String?
     let emailpartageur: String?
+    let image:String?
 }
 
 struct like: Codable{

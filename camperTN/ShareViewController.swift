@@ -48,9 +48,23 @@ class ShareViewController: UIViewController ,UITableViewDataSource,UITableViewDe
         //widgets
         let imageView = contentView?.viewWithTag(1) as! UIImageView
         let label = contentView?.viewWithTag(2) as! UILabel
+        let dateValue = contentView?.viewWithTag(3) as! UIDatePicker
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        let date = dateFormatter.date(from: data[indexPath.row].date!)
+        dateValue.date = date ?? Date()
+        
         //bind
         label.text = data[indexPath.row].titre
-        imageView.image = UIImage(named: "tes")
+        let url = URL(string: "http://localhost:3000/\(data[indexPath.row].image!)")!
+        
+        // Fetch Image Data
+        if let data = try? Data(contentsOf: url) {
+            // Create Image and Update Image View
+            imageView.image = UIImage(data: data)
+        }
         
         return cell!
     }
@@ -74,8 +88,15 @@ class ShareViewController: UIViewController ,UITableViewDataSource,UITableViewDe
             }
         }
     }
-
+    let defaults = UserDefaults.standard
     @IBAction func logoutBtnPRessed(_ sender: Any) {
+        defaults.setValue("", forKey: "email")
+        defaults.removeObject(forKey: "email")
+        print("before")
+        // Do any additional setup after loading the view.
+        
+        print("auto login")
+        self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.popViewController(animated: false)
     }
     /*

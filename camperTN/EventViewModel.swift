@@ -24,6 +24,11 @@ class EventViewModel: NSObject{
         }
     }
     
+    private(set) var existUsersInEvent : checkUsersInEventForDelete! {
+        didSet {
+            self.bindEventViewModelToController()
+        }
+    }
     var bindEventViewModelToController : (() -> ()) = {
     }
     
@@ -74,6 +79,12 @@ class EventViewModel: NSObject{
     func participateUserToEvent(idEvent:String,user: UserDataWithNotPassword){
         apiEvent?.updateEventWithUserParticipate(idEvent: idEvent, user: user, completion: { error in
             print(error ?? "dddzze")
+        })
+    }
+    
+    func checkIfUsersExistInEventForDeleteThisEvent(id: String) {
+        apiEvent?.UsersParticipateTothisEvent(id: id, completion: { checkUsersInEventForDelete in
+            self.existUsersInEvent = checkUsersInEventForDelete
         })
     }
 }
