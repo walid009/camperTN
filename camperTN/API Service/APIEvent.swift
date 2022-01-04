@@ -10,7 +10,7 @@ import UIKit
 
 class APIEvent: NSObject{
     func getEvents(token: String,completion : @escaping ([EventData]) -> ()){
-        guard let url = URL(string: "http://localhost:3000/events") else {
+        guard let url = URL(string: "\(baseURL)/events") else {
             return
         }
         var request = URLRequest(url: url)
@@ -57,7 +57,7 @@ class APIEvent: NSObject{
     }
     
     func createEventImage(image: UIImage, event:Event, completion: @escaping(Error?) -> () ){
-        guard let url = URL(string: "http://localhost:3000/events/create") else { return }
+        guard let url = URL(string: "\(baseURL)/events/create") else { return }
         var urlRequest = URLRequest(url: url)
         
         // generate boundary string using a unique per-app string
@@ -145,7 +145,7 @@ class APIEvent: NSObject{
     }
     
     func updateEvent(event: EventDataUpdate, completion: @escaping(Error?) -> () ){
-        guard let url = URL(string: "http://localhost:3000/events/update/\(event._id)") else { return }
+        guard let url = URL(string: "\(baseURL)/events/update/\(event._id)") else { return }
         do {
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "PUT"
@@ -167,7 +167,7 @@ class APIEvent: NSObject{
 
     
     func deleteEvent(event: EventID, completion: @escaping(Error?) -> () ){
-        guard let url = URL(string: "http://localhost:3000/events/delete/\(event._id)") else { return }
+        guard let url = URL(string: "\(baseURL)/events/delete/\(event._id)") else { return }
         
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "DELETE"
@@ -179,7 +179,7 @@ class APIEvent: NSObject{
     }
     
     func CheckUserAlreadyParticipate(id: String,email: String,completion : @escaping (EmailExist) -> ()){
-        guard let url = URL(string: "http://localhost:3000/events/UserAlreadyParticipate/\(id)/\(email)") else {
+        guard let url = URL(string: "\(baseURL)/events/UserAlreadyParticipate/\(id)/\(email)") else {
             return
         }
         URLSession.shared.dataTask(with: url) { data, response, error in
@@ -213,7 +213,7 @@ class APIEvent: NSObject{
     }
     
     func updateEventWithUserParticipate(idEvent:String,user: UserDataWithNotPassword, completion: @escaping(Error?) -> () ){
-        guard let url = URL(string: "http://localhost:3000/events/participate/\(idEvent)") else { return }
+        guard let url = URL(string: "\(baseURL)/events/participate/\(idEvent)") else { return }
         do {
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "PUT"

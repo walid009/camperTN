@@ -85,11 +85,7 @@ class DetailFavoriteViewController: UIViewController {
     
     
     @IBAction func shareBtnPressed(_ sender: Any) {
-        let share = shareEvent.init(titre: titre!, description: desc!, date: dateValue!, Longitude: longitude!, Latitude: latitude!, emailcreateur: emailcreateur!, emailpartageur: emailpartageur!, image: image!)
-        shareViewModel?.createShareEvent(share: share)
         setShare()
-        shareBtn.isEnabled = false
-        shareBtn.backgroundColor = UIColor.lightGray
     }
     
     func setShare() {
@@ -97,6 +93,11 @@ class DetailFavoriteViewController: UIViewController {
         //2
         let cancel = UIAlertAction(title: "No", style: .default)
         let action = UIAlertAction(title: "Yes", style: .cancel) { UIAlertAction in
+            
+            let share = shareEvent.init(titre: self.titre!, description: self.desc!, date: self.dateValue!, Longitude: self.longitude!, Latitude: self.latitude!, emailcreateur: self.emailcreateur!, emailpartageur: self.emailpartageur!, image: self.image!)
+            self.shareViewModel?.createShareEvent(share: share)
+            self.shareBtn.isEnabled = false
+            self.shareBtn.backgroundColor = UIColor.lightGray
             let request = NSFetchRequest<NSManagedObject>(entityName: "EventCore")
             do{
                 let result = try self.context.fetch(request)

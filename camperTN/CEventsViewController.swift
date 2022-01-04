@@ -45,6 +45,7 @@ class CEventsViewController: UIViewController,UITableViewDataSource,UITableViewD
         //print(data)
         DispatchQueue.main.async {
             self.data = self.eventViewModel!.eventData
+            self.data.reverse()
             self.tableEvents.reloadData()
         }
     }
@@ -70,7 +71,7 @@ class CEventsViewController: UIViewController,UITableViewDataSource,UITableViewD
         
         
         label.text = data[indexPath.row].titre
-        let url = URL(string: "http://localhost:3000/\(data[indexPath.row].image!)")!
+        let url = URL(string: "\(baseURL)/\(data[indexPath.row].image!)")!
         
         // Fetch Image Data
         if let data = try? Data(contentsOf: url) {

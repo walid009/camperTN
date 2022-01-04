@@ -9,6 +9,7 @@ import UIKit
 import CoreData
 import GoogleSignIn
 import Braintree
+import IQKeyboardManagerSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {    
@@ -32,12 +33,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //google
         GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
             if error != nil || user == nil {
-              // Show the app's signed-out state.
+                // Show the app's signed-out state.
             } else {
-              // Show the app's signed-in state.
+                // Show the app's signed-in state.
             }
-          }
-          return true
+        }
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = false
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+        
+        return true
     }
 
     // MARK: UISceneSession Lifecycle

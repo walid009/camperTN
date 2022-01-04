@@ -34,7 +34,7 @@ class SignUpMethodViewController: UIViewController {
         
         rolePicker.dataSource = self
         rolePicker.delegate = self
-        selectedRole = "campeur"
+        selectedRole = "Campeur"
         print(selectedRole ?? "no selected picker")
         userViewModel = UserViewModel()
         print(email!)

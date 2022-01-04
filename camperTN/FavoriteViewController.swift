@@ -53,7 +53,7 @@ class FavoriteViewController: UIViewController,UITableViewDataSource,UITableView
         //let label2 = context.viewWithTag(3) as! UILabel
         
         label1.text = events[indexPath.row].titre
-        let url = URL(string: "http://localhost:3000/\(events[indexPath.row].image!)")!
+        let url = URL(string: "\(baseURL)/\(events[indexPath.row].image!)")!
         
         // Fetch Image Data
         if let data = try? Data(contentsOf: url) {

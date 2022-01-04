@@ -13,6 +13,7 @@
 		D64682A22731B73E000917DA /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64682A12731B73E000917DA /* SignUpViewController.swift */; };
 		D647F541277CA26200F9EC14 /* ListOrganisateurViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D647F540277CA26200F9EC14 /* ListOrganisateurViewController.swift */; };
 		D647F543277CAEF300F9EC14 /* detailOrganisateurViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D647F542277CAEF300F9EC14 /* detailOrganisateurViewController.swift */; };
+		D647F546277D2AD000F9EC14 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D647F545277D2AD000F9EC14 /* IQKeyboardManagerSwift */; };
 		D650940B2763AE9800B8875A /* Commentaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = D650940A2763AE9800B8875A /* Commentaire.swift */; };
 		D650940D2763AEA700B8875A /* APICommentaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = D650940C2763AEA700B8875A /* APICommentaire.swift */; };
 		D650940F2763AEB900B8875A /* CommentaireViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D650940E2763AEB900B8875A /* CommentaireViewModel.swift */; };
@@ -108,6 +109,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24B9D2035583ADB63B1A52E5 /* Pods_camperTN.framework in Frameworks */,
+				D647F546277D2AD000F9EC14 /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +299,9 @@
 			dependencies = (
 			);
 			name = camperTN;
+			packageProductDependencies = (
+				D647F545277D2AD000F9EC14 /* IQKeyboardManagerSwift */,
+			);
 			productName = camperTN;
 			productReference = D6FA4E52272DE65700E122E0 /* camperTN.app */;
 			productType = "com.apple.product-type.application";
@@ -325,6 +330,9 @@
 				Base,
 			);
 			mainGroup = D6FA4E49272DE65600E122E0;
+			packageReferences = (
+				D647F544277D2AD000F9EC14 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+			);
 			productRefGroup = D6FA4E53272DE65700E122E0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -509,7 +517,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -564,7 +572,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -656,6 +664,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D647F544277D2AD000F9EC14 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D647F545277D2AD000F9EC14 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D647F544277D2AD000F9EC14 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		D6FA4E5E272DE65700E122E0 /* camperTN.xcdatamodeld */ = {

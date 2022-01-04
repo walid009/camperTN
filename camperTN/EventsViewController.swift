@@ -46,6 +46,7 @@ class EventsViewController: UIViewController,UITableViewDataSource,UITableViewDe
         //print(data)
         DispatchQueue.main.async {
             self.data = self.eventViewModel!.eventData
+            self.data.reverse()
             self.eventTable.reloadData()
         }
     }
@@ -74,7 +75,7 @@ class EventsViewController: UIViewController,UITableViewDataSource,UITableViewDe
         
         //bind
         label.text = data[indexPath.row].titre
-        let url = URL(string: "http://localhost:3000/\(data[indexPath.row].image!)")!
+        let url = URL(string: "\(baseURL)/\(data[indexPath.row].image!)")!
         
         // Fetch Image Data
         if let data = try? Data(contentsOf: url) {
@@ -127,8 +128,28 @@ class EventsViewController: UIViewController,UITableViewDataSource,UITableViewDe
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .normal,
                                         title: "Edit") { (action, view, completionHandler) in
-            self.performSegue(withIdentifier: "ShowUpdateEvent", sender: indexPath)
-            completionHandler(true)
+            self.eventViewModel?.checkIfUsersExistInEventForDeleteThisEvent(id: self.data[indexPath.row]._id!)
+            self.eventViewModel?.bindEventViewModelToController = {
+                DispatchQueue.main.async {
+                    self.exist = self.eventViewModel?.existUsersInEvent.usersExist
+                    print(self.exist!)
+                    if self.exist != nil {
+                        if self.exist! {
+                            //1
+                            let alert = UIAlertController(title: "Impossible", message: "Users participate to this event to late to Edit it !", preferredStyle: .alert)
+                            //2
+                            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                            //3
+                            alert.addAction(action)
+                            //4
+                            self.present(alert, animated: true, completion: nil)
+                        }else{
+                            self.performSegue(withIdentifier: "ShowUpdateEvent", sender: indexPath)
+                            completionHandler(true)
+                        }
+                    }
+                }
+            }
         }
         action.backgroundColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
         return UISwipeActionsConfiguration(actions: [action])
